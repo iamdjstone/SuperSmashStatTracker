@@ -1,5 +1,6 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -10,8 +11,11 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
-
-    StatCollector stats = new StatCollector();
+private StatCollector stats;
+    @Before
+        public void Setup() {
+                stats = new StatCollector();
+        }
 
     @Test
     public void addition_isCorrect() throws Exception {
@@ -27,5 +31,12 @@ public class ExampleUnitTest {
         stats.addLoss();
         stats.addLoss();
         assertEquals(0.5, stats.getWinPercentage(), 0.0);
+    }
+
+    @Test
+    public void totalMatchesIsCorrect(){
+        stats.addWin();
+        stats.addLoss();
+        assertEquals(2, stats.getTotalMatches());
     }
 }
