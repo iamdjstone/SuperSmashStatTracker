@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SuperSmashStatTracker</string>
+    <string name="winTotal">0</string>
+    <string name="lossTotal">0</string>
+    <string name="add_win">Add Win</string>
+    <string name="add_loss">Add Loss</string>
+    <string name="winPercentage">0%</string>
 </resources>
