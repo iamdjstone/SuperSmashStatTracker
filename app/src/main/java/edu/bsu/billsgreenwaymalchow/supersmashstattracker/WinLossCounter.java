@@ -1,7 +1,7 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
 
-public class StatCollector {
+public class WinLossCounter {
 
     public int wins = 0;
     public int losses = 0;

@@ -5,11 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    StatCollector statCollector = new StatCollector();
+    WinLossCounter winLossCounter = new WinLossCounter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,15 +20,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final EditText winPercentage = (EditText) findViewById(R.id.percentageEditText);
-                setContentView(R.layout.stat_collector);
+                setContentView(R.layout.win_loss);
                 Button addWinButton = (Button) findViewById(R.id.addWinButton);
                 final EditText totalWins = (EditText) findViewById(R.id.winTotalEditText);
                 addWinButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        statCollector.addWin();
-                        totalWins.setText(Integer.toString(statCollector.getWins()));
-                        //winPercentage.setText(Double.toString(statCollector.getWinPercentage()));
+                        winLossCounter.addWin();
+                        totalWins.setText(Integer.toString(winLossCounter.getWins()));
+                        //winPercentage.setText(Double.toString(winLossCounter.getWinPercentage()));
                     }
                 });
                 Button addLossButton = (Button) findViewById(R.id.addLossButton);
@@ -37,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
                 addLossButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        statCollector.addLoss();
-                        totalLosses.setText(Integer.toString(statCollector.getLosses()));
-                        //winPercentage.setText(Double.toString(statCollector.getWinPercentage()));
+                        winLossCounter.addLoss();
+                        totalLosses.setText(Integer.toString(winLossCounter.getLosses()));
+                        //winPercentage.setText(Double.toString(winLossCounter.getWinPercentage()));
                     }
                 });
             }
