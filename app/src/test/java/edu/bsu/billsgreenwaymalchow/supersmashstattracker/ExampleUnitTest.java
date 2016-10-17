@@ -11,10 +11,10 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
-private StatCollector stats;
+private WinLossCounter stats;
     @Before
         public void Setup() {
-                stats = new StatCollector();
+                stats = new WinLossCounter();
         }
 
     @Test
