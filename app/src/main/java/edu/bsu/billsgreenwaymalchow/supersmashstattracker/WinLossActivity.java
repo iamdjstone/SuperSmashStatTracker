@@ -21,7 +21,7 @@ public class WinLossActivity extends AppCompatActivity {
             public void onClick(View v) {
                 winLossCounter.addWin();
                 totalWins.setText(Integer.toString(winLossCounter.getWins()));
-                //winPercentage.setText(Double.toString(winLossCounter.getWinPercentage()));
+                winPercentage.setText(winLossCounter.getWinPercentage());
             }
         });
         Button addLossButton = (Button) findViewById(R.id.addLossButton);
@@ -31,7 +31,7 @@ public class WinLossActivity extends AppCompatActivity {
             public void onClick(View v) {
                 winLossCounter.addLoss();
                 totalLosses.setText(Integer.toString(winLossCounter.getLosses()));
-                //winPercentage.setText(Double.toString(winLossCounter.getWinPercentage()));
+                winPercentage.setText(winLossCounter.getWinPercentage());
             }
         });
     }
