@@ -13,9 +13,9 @@ public class WinLossActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.win_loss);
-        final EditText winPercentage = (EditText) findViewById(R.id.percentageEditText);
-        Button addWinButton = (Button) findViewById(R.id.addWinButton);
-        final EditText totalWins = (EditText) findViewById(R.id.winTotalEditText);
+        final EditText winPercentage = (EditText) findViewById(R.id.percentage_edit_text);
+        Button addWinButton = (Button) findViewById(R.id.add_win_button);
+        final EditText totalWins = (EditText) findViewById(R.id.win_total_edit_text);
         addWinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -25,7 +25,7 @@ public class WinLossActivity extends AppCompatActivity {
             }
         });
         Button addLossButton = (Button) findViewById(R.id.addLossButton);
-        final EditText totalLosses = (EditText) findViewById(R.id.lossTotalEditText);
+        final EditText totalLosses = (EditText) findViewById(R.id.loss_total_editt_text);
         addLossButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

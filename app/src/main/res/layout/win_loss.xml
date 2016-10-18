@@ -18,31 +18,31 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="36dp"
         android:layout_marginTop="41dp"
-        android:id="@+id/winTotalEditText" />
+        android:id="@+id/win_total_edit_text" />
 
     <EditText
         android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/winTotalEditText"
+        android:layout_alignTop="@+id/win_total_edit_text"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="67dp"
-        android:id="@+id/lossTotalEditText" />
+        android:id="@+id/loss_total_editt_text" />
 
     <Button
         android:text="@string/add_win"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/winTotalEditText"
-        android:layout_alignStart="@+id/winTotalEditText"
+        android:layout_below="@+id/win_total_edit_text"
+        android:layout_alignStart="@+id/win_total_edit_text"
         android:layout_marginTop="42dp"
-        android:id="@+id/addWinButton" />
+        android:id="@+id/add_win_button" />
 
     <Button
         android:text="@string/add_loss"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/addWinButton"
+        android:layout_alignTop="@+id/add_win_button"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="47dp"
         android:id="@+id/addLossButton" />
@@ -51,7 +51,7 @@
         android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/winTotalEditText"
-        android:layout_toEndOf="@+id/addWinButton"
-        android:id="@+id/percentageEditText" />
+        android:layout_alignTop="@+id/win_total_edit_text"
+        android:layout_toEndOf="@+id/add_win_button"
+        android:id="@+id/percentage_edit_text" />
 </RelativeLayout>
