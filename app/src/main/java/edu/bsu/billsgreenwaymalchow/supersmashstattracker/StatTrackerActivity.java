@@ -12,6 +12,8 @@ public class StatTrackerActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stat_tracker_list);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Button createStatTrackerButton = (Button) findViewById(R.id.create_stat_tracker_button);
         createStatTrackerButton.setOnClickListener(new View.OnClickListener() {
             @Override
