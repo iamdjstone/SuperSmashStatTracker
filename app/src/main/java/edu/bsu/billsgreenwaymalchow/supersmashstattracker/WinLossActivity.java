@@ -13,6 +13,8 @@ public class WinLossActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.win_loss);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         final EditText winPercentage = (EditText) findViewById(R.id.percentage_edit_text);
         Button addWinButton = (Button) findViewById(R.id.add_win_button);
         final EditText totalWins = (EditText) findViewById(R.id.win_total_edit_text);
