@@ -11,16 +11,29 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-                android:name=".WinLossActivity"
-                android:parentActivityName=".MainActivity">
-                <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value="edu.bsu.billsgreenwaymalchow.supersmashstattracker.MainActivity"
-                />
+            android:name=".StatTrackerActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.bsu.billsgreenwaymalchow.supersmashstattracker.MainActivity" />
+        </activity>
+        <activity
+            android:name=".CreateStatTrackerActivity"
+            android:parentActivityName=".StatTrackerActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.bsu.billsgreenwaymalchow.supersmashstattracker.StatTrackerActivity"/>
+        </activity>
+        <activity
+            android:name=".WinLossActivity"
+            android:parentActivityName=".StatTrackerActivity">
+            <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="edu.bsu.billsgreenwaymalchow.supersmashstattracker.StatTrackerActivity" />
         </activity>
     </application>
 
