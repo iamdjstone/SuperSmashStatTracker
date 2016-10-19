@@ -10,4 +10,38 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.bsu.billsgreenwaymalchow.supersmashstattracker.CreateStatTrackerActivity">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/button"
+        android:layout_marginEnd="23dp">
+
+        <TextView
+            android:text="Name: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:ems="10"
+            android:layout_marginTop="39dp"
+            android:id="@+id/trackerName" />
+
+    </LinearLayout>
+
+    <Button
+        android:text="Submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="159dp"
+        android:id="@+id/submit_button" />
+
 </RelativeLayout>

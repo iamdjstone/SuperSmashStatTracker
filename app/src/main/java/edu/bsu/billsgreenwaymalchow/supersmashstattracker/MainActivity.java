@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, WinLossActivity.class));
+                startActivity(new Intent(MainActivity.this, StatTrackerActivity.class));
             }
         });
     }

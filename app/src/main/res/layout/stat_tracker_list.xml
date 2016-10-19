@@ -15,13 +15,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="98dp">
+        android:layout_marginTop="98dp"
+        android:weightSum="1">
 
         <Button
-            android:text="Button"
-            android:layout_width="52dp"
+            android:text="New Tracker"
+            android:layout_width="179dp"
             android:layout_height="wrap_content"
-            android:id="@+id/create_stat_tracker_button" />
+            android:id="@+id/create_stat_tracker_button"
+            android:layout_weight="0.16" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.16">
+
+        </ScrollView>
 
     </LinearLayout>
 </RelativeLayout>

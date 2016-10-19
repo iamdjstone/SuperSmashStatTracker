@@ -22,4 +22,11 @@ public class StatTrackerActivity extends AppCompatActivity{
             }
         });
     }
+
+    @Override
+    protected void onResume(){
+        //super.onResume();
+
+
+    }
 }
