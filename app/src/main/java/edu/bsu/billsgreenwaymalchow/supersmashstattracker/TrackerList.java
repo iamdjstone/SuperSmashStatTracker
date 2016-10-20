@@ -1,21 +1,22 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
+import android.widget.Button;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class TrackerList {
 
-    private ArrayList<String> trackerList = new ArrayList<>();
+    private ArrayList<Button> trackerList = new ArrayList<>();
 
-    public void addTracker(String trackerName){
-        trackerList.add(trackerName);
+    public void addTracker(Button button){
+        trackerList.add(button);
     }
 
-    public ArrayList<String> getTrackerList(){
+    public ArrayList<Button> getTrackerList(){
         return trackerList;
     }
 
-    public String getTrackerName(int ordinal){
+    public Button getTrackerName(int ordinal){
         return trackerList.get(ordinal);
     }
 }

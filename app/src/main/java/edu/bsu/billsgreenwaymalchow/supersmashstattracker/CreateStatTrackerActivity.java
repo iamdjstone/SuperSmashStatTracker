@@ -5,10 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 
 public class CreateStatTrackerActivity extends AppCompatActivity {
 
-    TrackerList trackerList = new TrackerList();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +22,10 @@ public class CreateStatTrackerActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                trackerList.addTracker(trackerName.getText().toString());
+                ScrollView statTrackerScrollView = (ScrollView) findViewById(R.id.stat_tracker_scroll_view);
+                Button statTrackerButton = (Button) new View(this);
+                statTrackerScrollView.addView(statTrackerButton);
+                statTrackerButton.setText(trackerName.getText().toString());
                 finish();
             }
         });
