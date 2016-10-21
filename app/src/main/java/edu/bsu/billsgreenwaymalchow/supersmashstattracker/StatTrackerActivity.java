@@ -1,11 +1,14 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 
 public class StatTrackerActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -32,8 +35,12 @@ public class StatTrackerActivity extends AppCompatActivity implements View.OnCli
         if (requestCode == 1){
             if(resultCode == RESULT_OK){
                 String newName = data.getStringExtra("trackerName");
-                Button firstStatTrackerButton = (Button) findViewById(R.id.firstTracker);
-                firstStatTrackerButton.setText(newName);
+                Button thisStatTrackerButton = new Button(this);
+                thisStatTrackerButton.setText(newName);
+                LinearLayout statTrackerScrollList = (LinearLayout)findViewById(R.id.linear_layout_scrollbar);
+                LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+                statTrackerScrollList.addView(thisStatTrackerButton, lp);
+
             }
         }
     }

@@ -22,7 +22,6 @@ public class CreateStatTrackerActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Button submitButton = (Button) findViewById(R.id.submit_button);
-        final Button firstButton = (Button) findViewById(R.id.firstTracker);
         final EditText trackerName = (EditText) findViewById(R.id.trackerName);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -34,8 +33,5 @@ public class CreateStatTrackerActivity extends AppCompatActivity {
                 finish();
             }
         });
-    }
-    public String getNewTrackerName(EditText changedNameEditText){
-        return changedNameEditText.getText().toString();
     }
 }
