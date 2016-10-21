@@ -1,13 +1,17 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
 public class CreateStatTrackerActivity extends AppCompatActivity {
 
@@ -18,17 +22,20 @@ public class CreateStatTrackerActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Button submitButton = (Button) findViewById(R.id.submit_button);
-        final Button statTrackerButton = new Button(this);
+        final Button firstButton = (Button) findViewById(R.id.firstTracker);
         final EditText trackerName = (EditText) findViewById(R.id.trackerName);
+
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ScrollView statTrackerScrollView = (ScrollView) findViewById(R.id.stat_tracker_scroll_view);
-                ScrollView.LayoutParams scrollViewLayout = new ScrollView.LayoutParams(ScrollView.LayoutParams.MATCH_PARENT, ScrollView.LayoutParams.WRAP_CONTENT);
-                statTrackerButton.setText(trackerName.getText().toString());
-                scrollViewLayout.addView()
+                Intent intent = new Intent();
+                intent.putExtra("trackerName", trackerName.getText().toString());
+                setResult(RESULT_OK, intent);
                 finish();
             }
         });
+    }
+    public String getNewTrackerName(EditText changedNameEditText){
+        return changedNameEditText.getText().toString();
     }
 }

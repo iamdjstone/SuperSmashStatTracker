@@ -16,7 +16,9 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_marginTop="98dp"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:id="@+id/main_statTracker_layout">
+
 
         <Button
             android:text="New Tracker"
@@ -25,11 +27,44 @@
             android:id="@+id/create_stat_tracker_button"
             android:layout_weight="0.16" />
 
+
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.16"
             android:id="@+id/stat_tracker_scroll_view">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="98dp"
+                android:weightSum="1"
+                android:id="@+id/linear_layout_scrollbar">
+
+                <Button
+                    android:text="Empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/firstTracker"/>
+                >
+
+                <Button
+                    android:text="Empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/secondTracker"/>
+                >
+
+                <Button
+                    android:text="Empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/thirdTracker" />
+                >
+            </LinearLayout>
 
         </ScrollView>
 
