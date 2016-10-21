@@ -10,38 +10,72 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.bsu.billsgreenwaymalchow.supersmashstattracker.CreateStatTrackerActivity">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignEnd="@+id/submit_button"
-        android:layout_marginEnd="23dp">
+    <TextView
+        android:text="Name: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView" />
 
-        <TextView
-            android:text="Name: "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text="Empty"
-            android:ems="10"
-            android:layout_marginTop="39dp"
-            android:id="@+id/trackerName" />
-
-    </LinearLayout>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Empty"
+        android:ems="10"
+        android:layout_marginTop="39dp"
+        android:id="@+id/trackerName" />
 
     <Button
         android:text="Submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/submit_button"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="159dp"
-        android:id="@+id/submit_button" />
+        android:layout_alignEnd="@+id/trackerName"
+        android:layout_marginBottom="22dp" />
+
+    <Button
+        android:text="Brawl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/game_version_brawl"
+        android:layout_above="@+id/submit_button"
+        android:layout_toStartOf="@+id/submit_button"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="61dp" />
+
+    <Button
+        android:text="Melee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/game_version_melee"
+        android:layout_above="@+id/game_version_brawl"
+        android:layout_alignStart="@+id/game_version_brawl"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:text="Nintendo 64"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/game_version_64"
+        android:layout_above="@+id/game_version_melee"
+        android:layout_toEndOf="@+id/game_version_melee" />
+
+    <Button
+        android:text="3DS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/game_version_3ds"
+        android:layout_alignBaseline="@+id/game_version_brawl"
+        android:layout_alignBottom="@+id/game_version_brawl"
+        android:layout_alignStart="@+id/game_version_wii_u" />
+
+    <Button
+        android:text="Wii U"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/game_version_wii_u"
+        android:layout_below="@+id/game_version_64"
+        android:layout_toEndOf="@+id/submit_button" />
 
 </RelativeLayout>
