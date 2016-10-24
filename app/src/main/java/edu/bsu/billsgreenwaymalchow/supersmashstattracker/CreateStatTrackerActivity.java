@@ -1,16 +1,11 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.Toast;
 
 public class CreateStatTrackerActivity extends AppCompatActivity implements View.OnClickListener {
@@ -22,7 +17,10 @@ public class CreateStatTrackerActivity extends AppCompatActivity implements View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_stat_tracker);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        createGameVersionButtons();
+    }
 
+    private void createGameVersionButtons(){
         Button gameVersion64 = (Button) findViewById(R.id.game_version_64);
         gameVersion64.setOnClickListener(this);
         Button gameVersionMelee = (Button) findViewById(R.id.game_version_melee);
@@ -35,12 +33,6 @@ public class CreateStatTrackerActivity extends AppCompatActivity implements View
         gameVersion3DS.setOnClickListener(this);
         Button submitButton = (Button) findViewById(R.id.submit_button);
         submitButton.setOnClickListener(this);
-    }
-
-    public void showToastMessage(String gameVersion){
-        String s = "You selected game version: ";
-        Toast.makeText(CreateStatTrackerActivity.this, s + gameVersion, Toast.LENGTH_SHORT).show();
-        statTracker.setGameVersion(gameVersion);
     }
 
     @Override
@@ -75,5 +67,11 @@ public class CreateStatTrackerActivity extends AppCompatActivity implements View
                 finish();
                 break;
         }
+    }
+
+    public void showToastMessage(String gameVersion){
+        String s = "You selected game version: ";
+        Toast.makeText(CreateStatTrackerActivity.this, s + gameVersion, Toast.LENGTH_SHORT).show();
+        statTracker.setGameVersion(gameVersion);
     }
 }

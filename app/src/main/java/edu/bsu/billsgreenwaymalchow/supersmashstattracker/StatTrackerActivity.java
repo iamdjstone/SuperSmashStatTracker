@@ -34,18 +34,22 @@ public class StatTrackerActivity extends AppCompatActivity{
         super.onActivityResult(requestCode,resultCode,data);
         if ((requestCode == 1) && (resultCode== RESULT_OK)){
                 String newName = data.getStringExtra("trackerName");
-                Button thisStatTrackerButton = new Button(this);
-                thisStatTrackerButton.setText(newName);
-                LinearLayout statTrackerScrollList = (LinearLayout)findViewById(R.id.linear_layout_scrollbar);
-                LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-                statTrackerScrollList.addView(thisStatTrackerButton, lp);
-                trackerList.addTracker(thisStatTrackerButton);
-                thisStatTrackerButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(StatTrackerActivity.this, WinLossActivity.class));
-                }
-            });
-            }
+                createButtonsFromName(newName);
         }
     }
+
+    private void createButtonsFromName(String newName) {
+        Button thisStatTrackerButton = new Button(this);
+        thisStatTrackerButton.setText(newName);
+        LinearLayout statTrackerScrollList = (LinearLayout) findViewById(R.id.linear_layout_scrollbar);
+        LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        statTrackerScrollList.addView(thisStatTrackerButton, lp);
+        trackerList.addTracker(thisStatTrackerButton);
+        thisStatTrackerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(StatTrackerActivity.this, WinLossActivity.class));
+            }
+        });
+    }
+}
