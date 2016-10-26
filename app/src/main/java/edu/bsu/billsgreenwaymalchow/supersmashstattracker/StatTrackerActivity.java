@@ -17,9 +17,11 @@ public class StatTrackerActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stat_tracker_list);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        listenForCreateStatTrackerButtonClick();
+    }
 
+    private void listenForCreateStatTrackerButtonClick() {
         Button createStatTrackerButton = (Button) findViewById(R.id.create_stat_tracker_button);
-        LinearLayout listOfButtons = (LinearLayout) findViewById(R.id.linear_layout_scrollbar);
         createStatTrackerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

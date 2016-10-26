@@ -38,27 +38,21 @@ public class CreateStatTrackerActivity extends AppCompatActivity implements View
     @Override
     public void onClick(View v){
         switch (v.getId()){
-
             case R.id.game_version_64:
                 showToastMessage("Nintendo 64");
                 break;
-
             case R.id.game_version_melee:
                 showToastMessage("Melee");
                 break;
-
             case R.id.game_version_brawl:
                 showToastMessage("Brawl");
                 break;
-
             case R.id.game_version_wii_u:
                 showToastMessage("Wii U");
                 break;
-
             case R.id.game_version_3ds:
                 showToastMessage("3DS");
                 break;
-
             case R.id.submit_button:
                 Intent intent = new Intent();
                 final EditText trackerName = (EditText) findViewById(R.id.trackerName);

@@ -1,21 +1,18 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class ExampleUnitTest {
+public class WinLossCounterTest {
+
 private WinLossCounter stats;
     @Before
         public void Setup() {
                 stats = new WinLossCounter();
         }
-
-    @Test
-    public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
-    }
 
     @Test
     public void percentage_isCorrect(){
@@ -25,9 +22,8 @@ private WinLossCounter stats;
         stats.addLoss();
         stats.addLoss();
         stats.addLoss();
-        assertEquals(0.5, stats.getWinPercentage());
+        Assert.assertEquals(50.0, stats.getWinPercentage(), .01);
     }
-
     @Test
     public void totalMatchesIsCorrect(){
         stats.addWin();

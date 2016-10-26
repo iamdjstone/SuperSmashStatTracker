@@ -1,32 +1,31 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
-public class WinLossCounter {
+class WinLossCounter {
 
     private int wins = 0;
     private int losses = 0;
 
-    public void addWin(){
+    void addWin(){
         wins++;
     }
 
-    public void addLoss(){
+    void addLoss(){
         losses++;
     }
 
-    public int getWins(){
+    int getWins(){
         return wins;
     }
 
-    public int getLosses(){
+    int getLosses(){
         return losses;
     }
 
-    public int getTotalMatches(){
+    int getTotalMatches(){
         return wins + losses;
     }
 
-    public String getWinPercentage(){
-        double percentage = (double)wins/getTotalMatches() * 100;
-        return String.format("%.2f", percentage) + "%";
+    double getWinPercentage(){
+        return Math.round((double)wins/getTotalMatches() * 100);
     }
 }
