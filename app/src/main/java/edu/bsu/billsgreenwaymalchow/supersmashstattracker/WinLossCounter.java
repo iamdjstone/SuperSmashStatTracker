@@ -26,6 +26,6 @@ class WinLossCounter {
     }
 
     double getWinPercentage(){
-        return Math.round((double)wins/getTotalMatches() * 100);
+        return (double)wins/getTotalMatches() * 100;
     }
 }
