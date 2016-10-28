@@ -34,7 +34,11 @@ public class StatsProvider extends ContentProvider {
     @Nullable
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        return null;
+
+        return sqLiteDatabase.query(DatabaseOpenHelper.TABLE_STATS,
+                DatabaseOpenHelper.ALL_COLUMNS,
+                selection, null, null, null,
+                DatabaseOpenHelper.TRACKER_ID + " DESC");
     }
 
     @Nullable
@@ -46,16 +50,19 @@ public class StatsProvider extends ContentProvider {
     @Nullable
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        return null;
+        long id = sqLiteDatabase.insert(DatabaseOpenHelper.TABLE_STATS,
+                null, values);
+        return Uri.parse(BASE_PATH + "/" + id);
     }
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        return 0;
+        return sqLiteDatabase.delete(DatabaseOpenHelper.TABLE_STATS, selection, selectionArgs);
     }
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        return 0;
+        return sqLiteDatabase.update(DatabaseOpenHelper.TABLE_STATS,
+                values, selection, selectionArgs);
     }
 }

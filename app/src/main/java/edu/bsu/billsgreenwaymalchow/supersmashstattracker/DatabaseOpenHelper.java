@@ -12,6 +12,8 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper{
     public static final String TRACKER_WIN = "trackerWin";
     public static final String TRACKER_LOSS = "trackerLoss";
     public static final String TRACKER_GAME_VERSION = "trackerGameVersion";
+    public static final String[] ALL_COLUMNS =
+            {TRACKER_ID, TRACKER_WIN, TRACKER_LOSS, TRACKER_GAME_VERSION};
     private static final String TABLE_CREATE =
             "CREATE TABLE " + TABLE_STATS + " (" +
                     TRACKER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
