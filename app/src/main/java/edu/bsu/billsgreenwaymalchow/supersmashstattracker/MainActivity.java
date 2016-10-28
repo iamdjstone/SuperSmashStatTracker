@@ -1,6 +1,7 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,5 +20,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, StatTrackerActivity.class));
             }
         });
+        DatabaseOpenHelper databaseOpenHelper = new DatabaseOpenHelper(this);
+        SQLiteDatabase sqLiteDatabase = databaseOpenHelper.getWritableDatabase();
     }
 }
