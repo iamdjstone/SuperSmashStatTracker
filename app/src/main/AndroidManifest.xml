@@ -35,6 +35,12 @@
             android:name="android.support.PARENT_ACTIVITY"
             android:value="edu.bsu.billsgreenwaymalchow.supersmashstattracker.StatTrackerActivity" />
         </activity>
+
+        <provider
+            android:authorities="edu.bsu.billsgreenwaymalchow.supersmashstattracker.statsprovider"
+            android:name=".StatsProvider"
+            android:exported="false" />
+
     </application>
 
 </manifest>

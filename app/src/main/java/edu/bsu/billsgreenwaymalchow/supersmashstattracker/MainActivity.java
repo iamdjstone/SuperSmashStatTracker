@@ -20,7 +20,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, StatTrackerActivity.class));
             }
         });
-        DatabaseOpenHelper databaseOpenHelper = new DatabaseOpenHelper(this);
-        SQLiteDatabase sqLiteDatabase = databaseOpenHelper.getWritableDatabase();
     }
 }
