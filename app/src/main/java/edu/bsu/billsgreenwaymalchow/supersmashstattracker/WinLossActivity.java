@@ -1,5 +1,7 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
+import android.content.ContentValues;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -28,6 +30,7 @@ public class WinLossActivity extends AppCompatActivity {
                 winLossCounter.addWin();
                 totalWins.setText(String.format(Locale.getDefault(), "%d", winLossCounter.getWins()));
                 winPercentage.setText(String.format(Locale.getDefault(), "%.2f", (winLossCounter.getWinPercentage())) + "%");
+                insertWin();
             }
         });
         Button addLossButton = (Button) findViewById(R.id.addLossButton);
@@ -38,8 +41,20 @@ public class WinLossActivity extends AppCompatActivity {
                 winLossCounter.addLoss();
                 totalLosses.setText(String.format(Locale.getDefault(),"%d", winLossCounter.getLosses()));
                 winPercentage.setText(String.format(Locale.getDefault(),"%.2f",winLossCounter.getWinPercentage()) + "%");
+                insertLoss();
             }
         });
     }
 
+    private void insertWin(){
+        ContentValues values = new ContentValues();
+        values.put(DatabaseOpenHelper.TRACKER_WIN, winLossCounter.getWins());
+        Uri statURI = getContentResolver().insert(StatsProvider.CONTENT_URI, values);
+    }
+
+    private void insertLoss(){
+        ContentValues values = new ContentValues();
+        values.put(DatabaseOpenHelper.TRACKER_LOSS, winLossCounter.getLosses());
+        Uri statURI = getContentResolver().insert(StatsProvider.CONTENT_URI, values);
+    }
 }
