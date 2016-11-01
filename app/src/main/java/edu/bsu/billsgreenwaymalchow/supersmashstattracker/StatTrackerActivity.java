@@ -1,5 +1,6 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+
+import java.io.FileOutputStream;
 
 public class StatTrackerActivity extends AppCompatActivity{
 
@@ -42,6 +45,7 @@ public class StatTrackerActivity extends AppCompatActivity{
 
     private void createButtonsFromName(String newName) {
         Button thisStatTrackerButton = new Button(this);
+        createNewStatTrackerDataRow(newName);
         thisStatTrackerButton.setText(newName);
         LinearLayout statTrackerScrollList = (LinearLayout) findViewById(R.id.linear_layout_scrollbar);
         LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
@@ -53,5 +57,16 @@ public class StatTrackerActivity extends AppCompatActivity{
                 startActivity(new Intent(StatTrackerActivity.this, WinLossActivity.class));
             }
         });
+    }
+
+    private void createNewStatTrackerDataRow(String statTrackerName){
+        try {
+            FileOutputStream outputStream = openFileOutput("statsData.txt", Context.MODE_PRIVATE);
+            outputStream.write(statTrackerName.getBytes());
+            outputStream.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
