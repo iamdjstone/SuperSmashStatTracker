@@ -8,7 +8,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 
+import javax.xml.parsers.ParserConfigurationException;
+
 public class StatTrackerActivity extends AppCompatActivity{
+
+    StatKeeper statKeeper = new StatKeeper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,7 @@ public class StatTrackerActivity extends AppCompatActivity{
     }
 
     private void createButtonsFromName(String newName) {
+        //attemptToWriteTrackerNameToXMLSaveFile(newName);
         Button thisStatTrackerButton = new Button(this);
         thisStatTrackerButton.setText(newName);
         LinearLayout statTrackerScrollList = (LinearLayout) findViewById(R.id.linear_layout_scrollbar);
@@ -51,4 +56,14 @@ public class StatTrackerActivity extends AppCompatActivity{
             }
         });
     }
+
+    /*private void attemptToWriteTrackerNameToXMLSaveFile(String newName){
+        try {
+            statKeeper.writeXMLDocument(newName);
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+
+    }
+    */
 }
