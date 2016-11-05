@@ -8,10 +8,10 @@ import static org.junit.Assert.*;
 
 public class WinLossCounterTest {
 
-private WinLossCounter stats;
+private StatTracker stats;
     @Before
         public void Setup() {
-                stats = new WinLossCounter();
+                stats = new StatTracker();
         }
 
     @Test

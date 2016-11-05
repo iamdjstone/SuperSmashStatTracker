@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class CreateStatTrackerActivity extends AppCompatActivity implements View.OnClickListener {
 
-    StatTracker statTracker = new StatTracker();
+    public StatTracker statTracker = new StatTracker();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +57,7 @@ public class CreateStatTrackerActivity extends AppCompatActivity implements View
                 Intent intent = new Intent();
                 final EditText trackerName = (EditText) findViewById(R.id.trackerName);
                 intent.putExtra("trackerName", trackerName.getText().toString());
+                statTracker.setName(trackerName.getText().toString());
                 setResult(RESULT_OK, intent);
                 finish();
                 break;

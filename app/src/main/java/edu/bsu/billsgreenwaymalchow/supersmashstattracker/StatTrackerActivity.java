@@ -8,11 +8,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 
-import javax.xml.parsers.ParserConfigurationException;
-
 public class StatTrackerActivity extends AppCompatActivity{
-
-    StatKeeper statKeeper = new StatKeeper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
