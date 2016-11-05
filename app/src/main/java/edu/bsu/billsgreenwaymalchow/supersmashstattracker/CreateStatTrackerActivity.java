@@ -11,6 +11,7 @@ import android.widget.Toast;
 public class CreateStatTrackerActivity extends AppCompatActivity implements View.OnClickListener {
 
     public StatTracker statTracker = new StatTracker();
+    public StatTrackerElement statTrackerElement = new StatTrackerElement();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +60,14 @@ public class CreateStatTrackerActivity extends AppCompatActivity implements View
                 intent.putExtra("trackerName", trackerName.getText().toString());
                 statTracker.setName(trackerName.getText().toString());
                 setResult(RESULT_OK, intent);
+                statTrackerElement.createStatTrackerElement();
+                statTrackerElement.updateNameAndGameVersion(statTracker);
                 finish();
                 break;
         }
     }
 
-    public void showToastMessage(String gameVersion){
+    private void showToastMessage(String gameVersion){
         String s = "You selected game version: ";
         Toast.makeText(CreateStatTrackerActivity.this, s + gameVersion, Toast.LENGTH_SHORT).show();
         statTracker.setGameVersion(gameVersion);

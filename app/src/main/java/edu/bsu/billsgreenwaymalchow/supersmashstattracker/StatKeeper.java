@@ -34,8 +34,7 @@ public class StatKeeper {
         transformer.transform(source, result);
     }
 
-    public void update(){
-        StatTrackerElement statTrackerElement = new StatTrackerElement();
+    public void update(StatTrackerElement statTrackerElement){
         statKeeper.appendChild(statTrackerElement.getElement());
     }
 }

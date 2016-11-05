@@ -39,7 +39,6 @@ public class StatTrackerActivity extends AppCompatActivity{
     }
 
     private void createButtonsFromName(String newName) {
-        //attemptToWriteTrackerNameToXMLSaveFile(newName);
         Button thisStatTrackerButton = new Button(this);
         thisStatTrackerButton.setText(newName);
         LinearLayout statTrackerScrollList = (LinearLayout) findViewById(R.id.linear_layout_scrollbar);

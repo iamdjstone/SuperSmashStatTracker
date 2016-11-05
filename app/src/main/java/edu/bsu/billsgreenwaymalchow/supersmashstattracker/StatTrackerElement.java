@@ -15,10 +15,8 @@ public class StatTrackerElement {
     private Attr lossesAttr;
     private Element tracker;
 
-    public void createStatTrackerElement(Element statKeeper) {
+    public void createStatTrackerElement() {
         tracker = document.createElement("tracker");
-        statKeeper.appendChild(tracker);
-
         nameAttr = document.createAttribute("name");
         tracker.setAttributeNode(nameAttr);
         gameVersionAttr = document.createAttribute("gameVersion");
@@ -29,9 +27,12 @@ public class StatTrackerElement {
         tracker.setAttributeNode(lossesAttr);
     }
 
-    public void update(StatTracker statTracker){
+    public void updateNameAndGameVersion(StatTracker statTracker){
         nameAttr.setValue(statTracker.getName());
         gameVersionAttr.setValue(statTracker.getGameVersion());
+    }
+
+    public void updateWinsAndLosses(StatTracker statTracker){
         winsAttr.setValue(String.format(Locale.getDefault(), "%d", statTracker.getWins()));
         lossesAttr.setValue(String.format(Locale.getDefault(), "%d", statTracker.getLosses()));
     }
