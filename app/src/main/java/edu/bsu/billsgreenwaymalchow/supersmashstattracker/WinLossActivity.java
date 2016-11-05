@@ -10,7 +10,7 @@ import java.util.Locale;
 
 public class WinLossActivity extends AppCompatActivity{
 
-    StatTracker statTracker = new StatTracker();
+    WinLossCounter winLossCounter = new WinLossCounter();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,9 +25,9 @@ public class WinLossActivity extends AppCompatActivity{
         addWinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                statTracker.addWin();
-                totalWins.setText(String.format(Locale.getDefault(), "%d", statTracker.getWins()));
-                final String percentageFormat = String.format(Locale.getDefault(),"%.2f",statTracker.getWinPercentage()) + "%";
+                winLossCounter.addWin();
+                totalWins.setText(String.format(Locale.getDefault(), "%d", winLossCounter.getWins()));
+                final String percentageFormat = String.format(Locale.getDefault(),"%.2f", winLossCounter.getWinPercentage()) + "%";
                 final EditText winPercentage = (EditText) findViewById(R.id.percentage_edit_text);
                 winPercentage.setText(percentageFormat);
             }
@@ -37,9 +37,9 @@ public class WinLossActivity extends AppCompatActivity{
         addLossButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                statTracker.addLoss();
-                totalLosses.setText(String.format(Locale.getDefault(),"%d", statTracker.getLosses()));
-                final String percentageFormat = String.format(Locale.getDefault(),"%.2f",statTracker.getWinPercentage()) + "%";
+                winLossCounter.addLoss();
+                totalLosses.setText(String.format(Locale.getDefault(),"%d", winLossCounter.getLosses()));
+                final String percentageFormat = String.format(Locale.getDefault(),"%.2f", winLossCounter.getWinPercentage()) + "%";
                 final EditText winPercentage = (EditText) findViewById(R.id.percentage_edit_text);
                 winPercentage.setText(percentageFormat);
             }

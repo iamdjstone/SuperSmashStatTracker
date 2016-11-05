@@ -4,8 +4,9 @@ public class StatTracker {
 
     private String name;
     private String gameVersion;
-    private int wins = 0;
-    private int losses = 0;
+    private int wins;
+    private int losses;
+    private WinLossCounter winLossCounter = new WinLossCounter();
 
     public void setName(String name) {
         this.name = name;
@@ -23,27 +24,11 @@ public class StatTracker {
         return gameVersion;
     }
 
-    public void addWin(){
-        wins++;
-    }
-
-    public void addLoss(){
-        losses++;
-    }
-
     public int getWins(){
-        return wins;
+        return winLossCounter.getWins();
     }
 
     public int getLosses(){
-        return losses;
-    }
-
-    public int getTotalMatches(){
-        return wins + losses;
-    }
-
-    public double getWinPercentage(){
-        return (double)wins/getTotalMatches() * 100;
+        return winLossCounter.getLosses();
     }
 }

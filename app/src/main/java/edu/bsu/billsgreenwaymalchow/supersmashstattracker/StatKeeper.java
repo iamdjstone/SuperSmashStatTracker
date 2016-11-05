@@ -1,10 +1,7 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
-import java.util.Locale;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -17,7 +14,7 @@ import javax.xml.transform.stream.StreamResult;
 
 public class StatKeeper {
 
-    Document document;
+    private Document document;
     private Element statKeeper;
 
     public void createSaveXMLDocument() throws ParserConfigurationException, TransformerException {
@@ -26,7 +23,6 @@ public class StatKeeper {
         document = documentBuilder.newDocument();
         statKeeper = document.createElement("statKeeper");
         document.appendChild(statKeeper);
-
         printToScreen();
     }
 

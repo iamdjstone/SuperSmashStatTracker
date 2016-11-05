@@ -52,14 +52,4 @@ public class StatTrackerActivity extends AppCompatActivity{
             }
         });
     }
-
-    /*private void attemptToWriteTrackerNameToXMLSaveFile(String newName){
-        try {
-            statKeeper.writeXMLDocument(newName);
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        }
-
-    }
-    */
 }

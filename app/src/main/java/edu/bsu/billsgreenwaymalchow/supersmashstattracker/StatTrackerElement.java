@@ -8,7 +8,7 @@ import java.util.Locale;
 
 public class StatTrackerElement {
 
-    Document document;
+    private Document document;
     private Attr nameAttr;
     private Attr gameVersionAttr;
     private Attr winsAttr;

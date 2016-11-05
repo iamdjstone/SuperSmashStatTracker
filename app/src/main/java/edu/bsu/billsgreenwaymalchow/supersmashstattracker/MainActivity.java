@@ -6,13 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import org.w3c.dom.Document;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-
 public class MainActivity extends AppCompatActivity {
 
     StatKeeper statKeeper = new StatKeeper();
@@ -33,9 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public void attemptToCreateNewSaveXML() {
         try {
             statKeeper.createSaveXMLDocument();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (TransformerException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

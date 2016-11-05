@@ -8,26 +8,26 @@ import static org.junit.Assert.*;
 
 public class WinLossCounterTest {
 
-private StatTracker stats;
+private WinLossCounter winLossCounter;
     @Before
         public void Setup() {
-                stats = new StatTracker();
+                winLossCounter = new WinLossCounter();
         }
 
     @Test
     public void percentage_isCorrect(){
-        stats.addWin();
-        stats.addWin();
-        stats.addWin();
-        stats.addLoss();
-        stats.addLoss();
-        stats.addLoss();
-        Assert.assertEquals(50.0, stats.getWinPercentage(), .01);
+        winLossCounter.addWin();
+        winLossCounter.addWin();
+        winLossCounter.addWin();
+        winLossCounter.addLoss();
+        winLossCounter.addLoss();
+        winLossCounter.addLoss();
+        Assert.assertEquals(50.0, winLossCounter.getWinPercentage(), .01);
     }
     @Test
     public void totalMatchesIsCorrect(){
-        stats.addWin();
-        stats.addLoss();
-        assertEquals(2, stats.getTotalMatches());
+        winLossCounter.addWin();
+        winLossCounter.addLoss();
+        assertEquals(2, winLossCounter.getTotalMatches());
     }
 }
