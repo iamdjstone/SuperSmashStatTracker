@@ -12,7 +12,6 @@ import java.io.Serializable;
 
 public class StatTrackerActivity extends AppCompatActivity{
 
-    StatTracker thisStatTracker = new StatTracker();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

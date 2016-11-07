@@ -8,8 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import org.w3c.dom.Document;
-
 public class CreateStatTrackerActivity extends AppCompatActivity implements View.OnClickListener {
 
     StatTracker statTrackerToEdit = new StatTracker();

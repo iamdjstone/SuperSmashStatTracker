@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import org.w3c.dom.Document;
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,7 +28,12 @@ public class MainActivity extends AppCompatActivity {
     }
     public void attemptToCreateNewSaveXML() {
         try {
-            statKeeper.createSaveXMLDocument();
+            String FILENAME = "statData.xml";
+            File file = getApplicationContext().getFileStreamPath(FILENAME);
+            if(!file.exists()){
+                file.createNewFile();
+                statKeeper.createSaveXMLDocument(file);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
