@@ -8,8 +8,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 
+import java.io.Serializable;
+
 public class StatTrackerActivity extends AppCompatActivity{
 
+    StatTracker thisStatTracker = new StatTracker();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,7 @@ public class StatTrackerActivity extends AppCompatActivity{
         super.onActivityResult(requestCode,resultCode,data);
         if ((requestCode == 1) && (resultCode== RESULT_OK)){
                 String newName = data.getStringExtra("trackerName");
+                Serializable statTracker = data.getSerializableExtra("statTracker");
                 createButtonsFromName(newName);
         }
     }

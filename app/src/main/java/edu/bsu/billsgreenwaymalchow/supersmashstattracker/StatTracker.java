@@ -1,11 +1,11 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
-public class StatTracker {
+import java.io.Serializable;
+
+public class StatTracker implements Serializable{
 
     private String name;
     private String gameVersion;
-    private int wins;
-    private int losses;
     private WinLossCounter winLossCounter = new WinLossCounter();
 
     public void setName(String name) {

@@ -11,6 +11,11 @@ import java.util.Locale;
 public class WinLossActivity extends AppCompatActivity{
 
     WinLossCounter winLossCounter = new WinLossCounter();
+    StatTracker currentStatTracker;
+
+    public WinLossActivity(StatTracker currentStatTrackerToEdit){
+        currentStatTracker = currentStatTrackerToEdit;
+    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

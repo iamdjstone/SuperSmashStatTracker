@@ -4,9 +4,11 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import java.io.Serializable;
 import java.util.Locale;
 
-public class StatTrackerElement {
+public class StatTrackerElement implements Serializable{
+
 
     private Document document;
     private Attr nameAttr;
@@ -14,6 +16,8 @@ public class StatTrackerElement {
     private Attr winsAttr;
     private Attr lossesAttr;
     private Element tracker;
+
+
 
     public void createStatTrackerElement() {
         tracker = document.createElement("tracker");

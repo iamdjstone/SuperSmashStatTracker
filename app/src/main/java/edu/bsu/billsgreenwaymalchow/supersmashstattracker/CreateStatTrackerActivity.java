@@ -8,10 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.w3c.dom.Document;
+
 public class CreateStatTrackerActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public StatTracker statTracker = new StatTracker();
+    StatTracker statTrackerToEdit = new StatTracker();
     public StatTrackerElement statTrackerElement = new StatTrackerElement();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +61,11 @@ public class CreateStatTrackerActivity extends AppCompatActivity implements View
                 Intent intent = new Intent();
                 final EditText trackerName = (EditText) findViewById(R.id.trackerName);
                 intent.putExtra("trackerName", trackerName.getText().toString());
-                statTracker.setName(trackerName.getText().toString());
+                statTrackerToEdit.setName(trackerName.getText().toString());
+                intent.putExtra("statTracker", statTrackerToEdit);
                 setResult(RESULT_OK, intent);
                 statTrackerElement.createStatTrackerElement();
-                statTrackerElement.updateNameAndGameVersion(statTracker);
+                statTrackerElement.updateNameAndGameVersion(statTrackerToEdit);
                 finish();
                 break;
         }
@@ -70,6 +74,6 @@ public class CreateStatTrackerActivity extends AppCompatActivity implements View
     private void showToastMessage(String gameVersion){
         String s = "You selected game version: ";
         Toast.makeText(CreateStatTrackerActivity.this, s + gameVersion, Toast.LENGTH_SHORT).show();
-        statTracker.setGameVersion(gameVersion);
+        statTrackerToEdit.setGameVersion(gameVersion);
     }
 }

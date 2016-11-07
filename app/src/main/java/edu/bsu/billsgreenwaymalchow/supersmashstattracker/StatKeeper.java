@@ -17,13 +17,15 @@ public class StatKeeper {
     private Document document;
     private Element statKeeper;
 
-    public void createSaveXMLDocument() throws ParserConfigurationException, TransformerException {
+    public Document createSaveXMLDocument() throws ParserConfigurationException, TransformerException {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
         document = documentBuilder.newDocument();
         statKeeper = document.createElement("statKeeper");
         document.appendChild(statKeeper);
+
         printToScreen();
+        return document;
     }
 
     private void printToScreen() throws TransformerException {

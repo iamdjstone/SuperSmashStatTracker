@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import org.w3c.dom.Document;
+
 public class MainActivity extends AppCompatActivity {
 
     private static StatKeeper statKeeper = new StatKeeper();
@@ -19,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 attemptToCreateNewSaveXML();
-                startActivity(new Intent(MainActivity.this, StatTrackerActivity.class));
+                Intent firstIntent = new Intent(MainActivity.this, StatTrackerActivity.class);
+                startActivity(firstIntent);
             }
         });
     }
