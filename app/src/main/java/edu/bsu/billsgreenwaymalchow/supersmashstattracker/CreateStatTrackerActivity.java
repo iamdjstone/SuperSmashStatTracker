@@ -10,8 +10,7 @@ import android.widget.Toast;
 
 public class CreateStatTrackerActivity extends AppCompatActivity implements View.OnClickListener {
 
-    StatTracker statTrackerToEdit = new StatTracker();
-    public StatTrackerElement statTrackerElement = new StatTrackerElement();
+    public String selectedGameVersion;
 
 
     @Override
@@ -42,28 +41,30 @@ public class CreateStatTrackerActivity extends AppCompatActivity implements View
         switch (v.getId()){
             case R.id.game_version_64:
                 showToastMessage("Nintendo 64");
+                selectedGameVersion = "Nintendo 64";
                 break;
             case R.id.game_version_melee:
                 showToastMessage("Melee");
+                selectedGameVersion = "Melee";
                 break;
             case R.id.game_version_brawl:
                 showToastMessage("Brawl");
+                selectedGameVersion = "Brawl";
                 break;
             case R.id.game_version_wii_u:
                 showToastMessage("Wii U");
+                selectedGameVersion = "Wii U";
                 break;
             case R.id.game_version_3ds:
                 showToastMessage("3DS");
+                selectedGameVersion = "3DS";
                 break;
             case R.id.submit_button:
                 Intent intent = new Intent();
                 final EditText trackerName = (EditText) findViewById(R.id.trackerName);
                 intent.putExtra("trackerName", trackerName.getText().toString());
-                statTrackerToEdit.setName(trackerName.getText().toString());
-                intent.putExtra("statTracker", statTrackerToEdit);
+                intent.putExtra("gameVersion", selectedGameVersion);
                 setResult(RESULT_OK, intent);
-                statTrackerElement.createStatTrackerElement();
-                statTrackerElement.updateNameAndGameVersion(statTrackerToEdit);
                 finish();
                 break;
         }
@@ -72,6 +73,5 @@ public class CreateStatTrackerActivity extends AppCompatActivity implements View
     private void showToastMessage(String gameVersion){
         String s = "You selected game version: ";
         Toast.makeText(CreateStatTrackerActivity.this, s + gameVersion, Toast.LENGTH_SHORT).show();
-        statTrackerToEdit.setGameVersion(gameVersion);
     }
 }

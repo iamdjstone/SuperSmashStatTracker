@@ -18,6 +18,7 @@ public class StatKeeper {
 
     private Document document;
     private Element statKeeper;
+    private File file;
 
     public Document createSaveXMLDocument(File file) throws ParserConfigurationException, TransformerException {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -38,7 +39,8 @@ public class StatKeeper {
         transformer.transform(source, result);
     }
 
-    public void update(StatTrackerElement statTrackerElement){
-        statKeeper.appendChild(statTrackerElement.getElement());
+    public void update(StatTrackerElement statTrackerElement) throws TransformerException {
+        statKeeper.appendChild(statTrackerElement.getTheXMLElement());
+        printToScreen(file);
     }
 }

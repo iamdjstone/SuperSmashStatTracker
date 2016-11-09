@@ -12,6 +12,8 @@ import java.io.Serializable;
 
 public class StatTrackerActivity extends AppCompatActivity{
 
+    StatTracker thisStatTracker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,8 @@ public class StatTrackerActivity extends AppCompatActivity{
         super.onActivityResult(requestCode,resultCode,data);
         if ((requestCode == 1) && (resultCode== RESULT_OK)){
                 String newName = data.getStringExtra("trackerName");
-                Serializable statTracker = data.getSerializableExtra("statTracker");
+                String gameVersion = data.getStringExtra("gameVersion");
+                thisStatTracker = new StatTracker(newName, gameVersion);
                 createButtonsFromName(newName);
         }
     }

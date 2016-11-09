@@ -7,17 +7,16 @@ import org.w3c.dom.Element;
 import java.io.Serializable;
 import java.util.Locale;
 
-public class StatTrackerElement implements Serializable{
+import javax.xml.transform.TransformerException;
 
+public class StatTrackerElement{
 
-    private Document document;
+    private Element tracker;
     private Attr nameAttr;
     private Attr gameVersionAttr;
     private Attr winsAttr;
     private Attr lossesAttr;
-    private Element tracker;
-
-
+    private Document document;
 
     public void createStatTrackerElement() {
         tracker = document.createElement("tracker");
@@ -41,7 +40,11 @@ public class StatTrackerElement implements Serializable{
         lossesAttr.setValue(String.format(Locale.getDefault(), "%d", statTracker.getLosses()));
     }
 
-    public Element getElement(){
+    public Element getTheXMLElement(){
         return tracker;
+    }
+    public void updateStatKeeper() throws TransformerException {
+        StatKeeper statKeeper = new StatKeeper();
+        statKeeper.update(this);
     }
 }

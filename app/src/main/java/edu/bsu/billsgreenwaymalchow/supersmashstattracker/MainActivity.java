@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
             String FILENAME = "statData.xml";
             File file = getApplicationContext().getFileStreamPath(FILENAME);
             if(!file.exists()){
-                file.createNewFile();
                 statKeeper.createSaveXMLDocument(file);
             }
         } catch (Exception e) {
