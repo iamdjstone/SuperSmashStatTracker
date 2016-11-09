@@ -7,8 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
-
-import java.io.Serializable;
+import javax.xml.transform.TransformerException;
 
 public class StatTrackerActivity extends AppCompatActivity{
 
@@ -37,10 +36,19 @@ public class StatTrackerActivity extends AppCompatActivity{
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
         if ((requestCode == 1) && (resultCode== RESULT_OK)){
-                String newName = data.getStringExtra("trackerName");
-                String gameVersion = data.getStringExtra("gameVersion");
-                thisStatTracker = new StatTracker(newName, gameVersion);
-                createButtonsFromName(newName);
+            String newName = data.getStringExtra("trackerName");
+            String gameVersion = data.getStringExtra("gameVersion");
+            thisStatTracker = new StatTracker(newName, gameVersion);
+            attemptToPushToStatTrackerElement();
+            createButtonsFromName(newName);
+        }
+    }
+
+    private void attemptToPushToStatTrackerElement(){
+        try {
+            thisStatTracker.pushToStatTrackerElement();
+        } catch (TransformerException e) {
+            e.printStackTrace();
         }
     }
 
