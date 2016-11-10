@@ -7,18 +7,41 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
+
+import java.io.File;
+import java.util.Scanner;
+
 import javax.xml.transform.TransformerException;
 
 public class StatTrackerActivity extends AppCompatActivity{
 
-    StatTracker thisStatTracker;
+    private StatTracker thisStatTracker;
+    private static StatKeeper statKeeper = new StatKeeper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stat_tracker_list);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        attemptToCreateNewSaveXML();
         listenForCreateStatTrackerButtonClick();
+    }
+
+
+    public void attemptToCreateNewSaveXML() {
+        try {
+            String FILENAME = "statData.xml";
+            File file = getApplicationContext().getFileStreamPath(FILENAME);
+            //if(!file.exists()){}
+            statKeeper.createSaveXMLDocument();
+            statKeeper.writeToFile(file);
+            Scanner input = new Scanner(file);
+            while (input.hasNextLine()) {
+                System.out.println(input.nextLine());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void listenForCreateStatTrackerButtonClick() {
@@ -40,19 +63,19 @@ public class StatTrackerActivity extends AppCompatActivity{
             String gameVersion = data.getStringExtra("gameVersion");
             thisStatTracker = new StatTracker(newName, gameVersion);
             attemptToPushToStatTrackerElement();
-            createButtonsFromName(newName);
+            createNewButtonFromName(newName);
         }
     }
 
     private void attemptToPushToStatTrackerElement(){
         try {
             thisStatTracker.pushToStatTrackerElement();
-        } catch (TransformerException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void createButtonsFromName(String newName) {
+    private void createNewButtonFromName(String newName) {
         Button thisStatTrackerButton = new Button(this);
         thisStatTrackerButton.setText(newName);
         LinearLayout statTrackerScrollList = (LinearLayout) findViewById(R.id.linear_layout_scrollbar);

@@ -4,9 +4,12 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import java.io.Serializable;
+import java.io.FileNotFoundException;
 import java.util.Locale;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
 public class StatTrackerElement{
@@ -16,10 +19,10 @@ public class StatTrackerElement{
     private Attr gameVersionAttr;
     private Attr winsAttr;
     private Attr lossesAttr;
-    private Document document;
 
     public void createStatTrackerElement() {
-        tracker = document.createElement("tracker");
+        Document document = createNewElementDocument();
+        Element tracker = document.createElement("tracker");
         nameAttr = document.createAttribute("name");
         tracker.setAttributeNode(nameAttr);
         gameVersionAttr = document.createAttribute("gameVersion");
@@ -43,8 +46,20 @@ public class StatTrackerElement{
     public Element getTheXMLElement(){
         return tracker;
     }
-    public void updateStatKeeper() throws TransformerException {
+
+    public void updateStatKeeper() throws TransformerException, ParserConfigurationException, FileNotFoundException {
         StatKeeper statKeeper = new StatKeeper();
         statKeeper.update(this);
+    }
+
+    public Document createNewElementDocument(){
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = null;
+        try {
+            builder = factory.newDocumentBuilder();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+            return builder.newDocument();
     }
 }

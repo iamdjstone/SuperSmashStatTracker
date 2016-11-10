@@ -20,22 +20,10 @@ public class MainActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                attemptToCreateNewSaveXML();
                 Intent firstIntent = new Intent(MainActivity.this, StatTrackerActivity.class);
                 startActivity(firstIntent);
             }
         });
-    }
-    public void attemptToCreateNewSaveXML() {
-        try {
-            String FILENAME = "statData.xml";
-            File file = getApplicationContext().getFileStreamPath(FILENAME);
-            if(!file.exists()){
-                statKeeper.createSaveXMLDocument(file);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

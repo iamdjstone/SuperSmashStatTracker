@@ -1,6 +1,9 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
 
+import java.io.FileNotFoundException;
+
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
 public class StatTracker{
@@ -39,10 +42,10 @@ public class StatTracker{
         return winLossCounter.getLosses();
     }
 
-    public void pushToStatTrackerElement() throws TransformerException {
+    public void pushToStatTrackerElement() throws TransformerException, ParserConfigurationException, FileNotFoundException {
+        statTrackerElement.createStatTrackerElement();
         statTrackerElement.updateNameAndGameVersion(this);
         statTrackerElement.updateWinsAndLosses(this);
-        statTrackerElement.createStatTrackerElement();
         statTrackerElement.updateStatKeeper();
 
     }
