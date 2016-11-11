@@ -11,12 +11,10 @@ import android.widget.LinearLayout.LayoutParams;
 import java.io.File;
 import java.util.Scanner;
 
-import javax.xml.transform.TransformerException;
-
 public class StatTrackerActivity extends AppCompatActivity{
 
     private StatTracker thisStatTracker;
-    private static StatKeeper statKeeper = new StatKeeper();
+    private static StatTrackerWriter statTrackerWriter = new StatTrackerWriter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +30,17 @@ public class StatTrackerActivity extends AppCompatActivity{
         try {
             String FILENAME = "statData.xml";
             File file = getApplicationContext().getFileStreamPath(FILENAME);
-            //if(!file.exists()){}
-            statKeeper.createSaveXMLDocument();
-            statKeeper.writeToFile(file);
-            Scanner input = new Scanner(file);
-            while (input.hasNextLine()) {
-                System.out.println(input.nextLine());
+            statTrackerWriter.createSaveXMLDocument();
+            if (!file.exists()) {
+                statTrackerWriter.setFile(file);
+                statTrackerWriter.writeToFile();
+                Scanner input = new Scanner(file);
+                while (input.hasNextLine()) {
+                    System.out.println(input.nextLine());
+                }
             }
-        } catch (Exception e) {
+        }
+        catch(Exception e){
             e.printStackTrace();
         }
     }
@@ -62,17 +63,20 @@ public class StatTrackerActivity extends AppCompatActivity{
             String newName = data.getStringExtra("trackerName");
             String gameVersion = data.getStringExtra("gameVersion");
             thisStatTracker = new StatTracker(newName, gameVersion);
-            attemptToPushToStatTrackerElement();
+            attemptToPushToStatTrackerWriter();
             createNewButtonFromName(newName);
         }
     }
 
-    private void attemptToPushToStatTrackerElement(){
+    private void attemptToPushToStatTrackerWriter(){
         try {
-            thisStatTracker.pushToStatTrackerElement();
+            thisStatTracker.pushToStatTrackerWriter();
+            System.out.println("Attempt To Push To Stat Tracker Writer");
         } catch (Exception e) {
+            System.out.println("Error in Attempt to Push Stat Tracker Writer");
             e.printStackTrace();
         }
+
     }
 
     private void createNewButtonFromName(String newName) {

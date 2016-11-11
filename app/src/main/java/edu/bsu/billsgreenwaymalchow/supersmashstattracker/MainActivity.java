@@ -10,8 +10,6 @@ import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static StatKeeper statKeeper = new StatKeeper();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,11 +22,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(firstIntent);
             }
         });
-    }
-
-    @Override
-    protected void onStop(){
-        super.onStop();
-        //statKeeper.update();
     }
 }

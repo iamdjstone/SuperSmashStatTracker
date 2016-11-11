@@ -40,24 +40,24 @@ public class CreateStatTrackerActivity extends AppCompatActivity implements View
     public void onClick(View v){
         switch (v.getId()){
             case R.id.game_version_64:
-                showToastMessage("Nintendo 64");
                 selectedGameVersion = "Nintendo 64";
+                showToastMessage(selectedGameVersion);
                 break;
             case R.id.game_version_melee:
-                showToastMessage("Melee");
                 selectedGameVersion = "Melee";
+                showToastMessage(selectedGameVersion);
                 break;
             case R.id.game_version_brawl:
-                showToastMessage("Brawl");
                 selectedGameVersion = "Brawl";
+                showToastMessage(selectedGameVersion);
                 break;
             case R.id.game_version_wii_u:
-                showToastMessage("Wii U");
                 selectedGameVersion = "Wii U";
+                showToastMessage(selectedGameVersion);
                 break;
             case R.id.game_version_3ds:
-                showToastMessage("3DS");
                 selectedGameVersion = "3DS";
+                showToastMessage(selectedGameVersion);
                 break;
             case R.id.submit_button:
                 Intent intent = new Intent();
@@ -71,7 +71,7 @@ public class CreateStatTrackerActivity extends AppCompatActivity implements View
     }
 
     private void showToastMessage(String gameVersion){
-        String s = "You selected game version: ";
-        Toast.makeText(CreateStatTrackerActivity.this, s + gameVersion, Toast.LENGTH_SHORT).show();
+        String gameVersionStatement = "You selected game version: ";
+        Toast.makeText(CreateStatTrackerActivity.this, gameVersionStatement + gameVersion, Toast.LENGTH_SHORT).show();
     }
 }

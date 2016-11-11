@@ -11,7 +11,7 @@ public class StatTracker{
     private String name;
     private String gameVersion;
     private WinLossCounter winLossCounter = new WinLossCounter();
-    private StatTrackerElement statTrackerElement = new StatTrackerElement();
+    private StatTrackerWriter statTrackerWriter = new StatTrackerWriter();
 
     StatTracker(String name, String gameVersion){
         setName(name);
@@ -42,12 +42,14 @@ public class StatTracker{
         return winLossCounter.getLosses();
     }
 
-    public void pushToStatTrackerElement() throws TransformerException, ParserConfigurationException, FileNotFoundException {
-        statTrackerElement.createStatTrackerElement();
-        statTrackerElement.updateNameAndGameVersion(this);
-        statTrackerElement.updateWinsAndLosses(this);
-        statTrackerElement.updateStatKeeper();
-
+    public void pushToStatTrackerWriter() throws TransformerException, ParserConfigurationException, FileNotFoundException {
+        System.out.println("Push To Stat Tracker Writer 0");
+        statTrackerWriter.createStatTrackerElement();
+        System.out.println("Push To Stat Tracker Writer 1");
+        statTrackerWriter.updateNameAndGameVersion(this);
+        System.out.println("Push To Stat Tracker Writer 2");
+        statTrackerWriter.updateWinsAndLosses(this);
+        System.out.println("Push To Stat Tracker Writer 3");
     }
 
 }
