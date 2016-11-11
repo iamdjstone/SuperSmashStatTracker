@@ -55,7 +55,8 @@ public class StatTrackerWriter {
         System.out.println("Write to File");
     }
 
-    public void createStatTrackerElement() throws TransformerException {
+    public void createStatTrackerElement() throws TransformerException, ParserConfigurationException {
+        createSaveXMLDocument();
         System.out.println("create Stat Tracker Element 0");
         Element tracker = document.createElement("tracker");
         System.out.println("create Stat Tracker Element 1");

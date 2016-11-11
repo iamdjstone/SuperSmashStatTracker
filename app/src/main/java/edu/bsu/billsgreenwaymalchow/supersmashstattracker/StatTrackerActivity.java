@@ -30,9 +30,8 @@ public class StatTrackerActivity extends AppCompatActivity{
         try {
             String FILENAME = "statData.xml";
             File file = getApplicationContext().getFileStreamPath(FILENAME);
-            statTrackerWriter.createSaveXMLDocument();
+            statTrackerWriter.setFile(file);
             if (!file.exists()) {
-                statTrackerWriter.setFile(file);
                 statTrackerWriter.writeToFile();
                 Scanner input = new Scanner(file);
                 while (input.hasNextLine()) {
