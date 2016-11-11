@@ -1,5 +1,6 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +12,8 @@ import java.util.Locale;
 public class WinLossActivity extends AppCompatActivity{
 
     WinLossCounter winLossCounter = new WinLossCounter();
+    int wins;
+    int losses;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +29,8 @@ public class WinLossActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 winLossCounter.addWin();
-                totalWins.setText(String.format(Locale.getDefault(), "%d", winLossCounter.getWins()));
+                wins = winLossCounter.getWins();
+                totalWins.setText(String.format(Locale.getDefault(), "%d", wins));
                 final String percentageFormat = String.format(Locale.getDefault(),"%.2f", winLossCounter.getWinPercentage()) + "%";
                 final EditText winPercentage = (EditText) findViewById(R.id.percentage_edit_text);
                 winPercentage.setText(percentageFormat);
@@ -38,11 +42,20 @@ public class WinLossActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 winLossCounter.addLoss();
-                totalLosses.setText(String.format(Locale.getDefault(),"%d", winLossCounter.getLosses()));
+                losses = winLossCounter.getLosses();
+                totalLosses.setText(String.format(Locale.getDefault(),"%d", losses));
                 final String percentageFormat = String.format(Locale.getDefault(),"%.2f", winLossCounter.getWinPercentage()) + "%";
                 final EditText winPercentage = (EditText) findViewById(R.id.percentage_edit_text);
                 winPercentage.setText(percentageFormat);
             }
         });
+    }
+
+    protected void onStop(){
+        super.onStop();
+        Intent intent = new Intent();
+        intent.putExtra("totalWins", wins);
+        intent.putExtra("totalLosses", losses);
+        setResult(RESULT_OK, intent);
     }
 }

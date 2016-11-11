@@ -24,11 +24,14 @@ public class StatTrackerWriter {
     private Attr lossesAttr;
     private Document document;
     private File saveFile;
+    private Element statKeeper;
 
     public StatTrackerWriter() throws ParserConfigurationException {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
         document = documentBuilder.newDocument();
+        statKeeper = document.createElement("statKeeper");
+        document.appendChild(statKeeper);
     }
 
     public void setFile(File file) {
@@ -41,29 +44,25 @@ public class StatTrackerWriter {
         document = documentBuilder.newDocument();
     }
 
-    public void printToScreen() throws TransformerException {
+    private void printToScreen() throws TransformerException {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         DOMSource source = new DOMSource(document);
         StreamResult result = new StreamResult(System.out);
         transformer.transform(source, result);
-        System.out.println("Print to Screen");
     }
 
     public void writeToFile() throws TransformerException {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         DOMSource source = new DOMSource(document);
-        StreamResult result = new StreamResult(System.out);
+        StreamResult result = new StreamResult(saveFile);
         transformer.transform(source, result);
-        System.out.println("write to file");
-        printToScreen();
-        System.out.println("Write to File");
     }
 
-    public void createStatTrackerElement() throws TransformerException, ParserConfigurationException {
+    public void createStatTrackerElement() throws TransformerException {
         Element tracker = document.createElement("tracker");
-        document.appendChild(tracker);
+        statKeeper.appendChild(tracker);
         nameAttr = document.createAttribute("name");
         tracker.setAttributeNode(nameAttr);
         gameVersionAttr = document.createAttribute("gameVersion");
@@ -72,7 +71,6 @@ public class StatTrackerWriter {
         tracker.setAttributeNode(winsAttr);
         lossesAttr = document.createAttribute("losses");
         tracker.setAttributeNode(lossesAttr);
-        printToScreen();
     }
 
     public void updateNameAndGameVersion(String name, String gameVersion){
@@ -83,6 +81,11 @@ public class StatTrackerWriter {
     public void updateWinsAndLosses(int gameWins, int gameLosses){
         winsAttr.setValue(String.format(Locale.getDefault(), "%d", gameWins));
         lossesAttr.setValue(String.format(Locale.getDefault(), "%d", gameLosses));
+        try {
+            printToScreen();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
     }
 
 }

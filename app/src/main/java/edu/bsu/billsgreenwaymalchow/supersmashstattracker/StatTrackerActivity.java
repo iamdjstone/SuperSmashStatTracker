@@ -31,7 +31,6 @@ public class StatTrackerActivity extends AppCompatActivity{
         listenForCreateStatTrackerButtonClick();
     }
 
-
     public void attemptToCreateNewSaveXML() {
         try {
             String FILENAME = "statData.xml";
@@ -73,20 +72,21 @@ public class StatTrackerActivity extends AppCompatActivity{
             attemptToPushToStatTrackerWriter();
             createNewButtonFromName(newName);
         }
+        if ((requestCode == 2) && (resultCode== RESULT_OK)){
+            int newWins = data.getIntExtra("totalWins", 1);
+            int newLosses = data.getIntExtra("totalLosses", 2);
+            statTrackerWriter.updateWinsAndLosses(newWins, newLosses);
+        }
     }
-
 
     private void attemptToPushToStatTrackerWriter(){
         try {
             pushToStatTrackerWriter();
-            System.out.println("Attempt To Push To Stat Tracker Writer");
         } catch (Exception e) {
             System.out.println("Error in Attempt to Push Stat Tracker Writer");
             e.printStackTrace();
         }
-
     }
-
 
     private void createNewButtonFromName(String newName) {
         Button thisStatTrackerButton = new Button(this);
@@ -97,22 +97,15 @@ public class StatTrackerActivity extends AppCompatActivity{
         thisStatTrackerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StatTrackerActivity.this, WinLossActivity.class));
+                Intent i = new Intent(StatTrackerActivity.this, WinLossActivity.class);
+                startActivityForResult(i, 2);
             }
         });
     }
 
     public void pushToStatTrackerWriter() throws TransformerException, ParserConfigurationException {
-        // statTrackerWriter.createSaveXMLDocument();
-        System.out.println("pushToStatTrackerWriter 0");
         statTrackerWriter.createStatTrackerElement();
-        System.out.println("pushToStatTrackerWriter 1");
         statTrackerWriter.updateNameAndGameVersion(thisStatTracker.getName(), thisStatTracker.getGameVersion());
         statTrackerWriter.updateWinsAndLosses(thisStatTracker.getWins(), thisStatTracker.getLosses());
-        statTrackerWriter.printToScreen();
-
-
-
     }
-
 }
