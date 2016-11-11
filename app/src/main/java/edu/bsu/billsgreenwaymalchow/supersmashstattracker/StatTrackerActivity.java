@@ -11,10 +11,16 @@ import android.widget.LinearLayout.LayoutParams;
 import java.io.File;
 import java.util.Scanner;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+
 public class StatTrackerActivity extends AppCompatActivity{
 
     private StatTracker thisStatTracker;
-    private static StatTrackerWriter statTrackerWriter = new StatTrackerWriter();
+    private StatTrackerWriter statTrackerWriter = new StatTrackerWriter();
+
+    public StatTrackerActivity() throws ParserConfigurationException {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +36,7 @@ public class StatTrackerActivity extends AppCompatActivity{
         try {
             String FILENAME = "statData.xml";
             File file = getApplicationContext().getFileStreamPath(FILENAME);
-            statTrackerWriter.setFile(file);
             if (!file.exists()) {
-                statTrackerWriter.writeToFile();
                 Scanner input = new Scanner(file);
                 while (input.hasNextLine()) {
                     System.out.println(input.nextLine());
@@ -61,15 +65,20 @@ public class StatTrackerActivity extends AppCompatActivity{
         if ((requestCode == 1) && (resultCode== RESULT_OK)){
             String newName = data.getStringExtra("trackerName");
             String gameVersion = data.getStringExtra("gameVersion");
-            thisStatTracker = new StatTracker(newName, gameVersion);
+            try {
+                thisStatTracker = new StatTracker(newName, gameVersion);
+            } catch (ParserConfigurationException e) {
+                e.printStackTrace();
+            }
             attemptToPushToStatTrackerWriter();
             createNewButtonFromName(newName);
         }
     }
 
+
     private void attemptToPushToStatTrackerWriter(){
         try {
-            thisStatTracker.pushToStatTrackerWriter();
+            pushToStatTrackerWriter();
             System.out.println("Attempt To Push To Stat Tracker Writer");
         } catch (Exception e) {
             System.out.println("Error in Attempt to Push Stat Tracker Writer");
@@ -77,6 +86,7 @@ public class StatTrackerActivity extends AppCompatActivity{
         }
 
     }
+
 
     private void createNewButtonFromName(String newName) {
         Button thisStatTrackerButton = new Button(this);
@@ -91,4 +101,18 @@ public class StatTrackerActivity extends AppCompatActivity{
             }
         });
     }
+
+    public void pushToStatTrackerWriter() throws TransformerException, ParserConfigurationException {
+        // statTrackerWriter.createSaveXMLDocument();
+        System.out.println("pushToStatTrackerWriter 0");
+        statTrackerWriter.createStatTrackerElement();
+        System.out.println("pushToStatTrackerWriter 1");
+        statTrackerWriter.updateNameAndGameVersion(thisStatTracker.getName(), thisStatTracker.getGameVersion());
+        statTrackerWriter.updateWinsAndLosses(thisStatTracker.getWins(), thisStatTracker.getLosses());
+        statTrackerWriter.printToScreen();
+
+
+
+    }
+
 }
