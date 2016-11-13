@@ -12,11 +12,11 @@ public class StatTracker{
     private int wins;
     private int losses;
 
-
     StatTracker(String name, String gameVersion) throws ParserConfigurationException {
         setName(name);
         setGameVersion(gameVersion);
     }
+
     public void setWins(int wins){
         this.wins = wins;
     }
