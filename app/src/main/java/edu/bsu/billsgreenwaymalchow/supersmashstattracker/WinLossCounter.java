@@ -2,8 +2,16 @@ package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
 public class WinLossCounter {
 
-    private int wins = 0;
-    private int losses = 0;
+    private int wins;
+    private int losses;
+
+    public void setWins(int wins){
+        this.wins = wins;
+    }
+
+    public void setLosses(int losses){
+        this.losses = losses;
+    }
 
     public void addWin(){
         wins++;

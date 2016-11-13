@@ -22,7 +22,7 @@ public class StatTrackerWriter {
     private Attr gameVersionAttr;
     private Attr winsAttr;
     private Attr lossesAttr;
-    private Document document;
+    public Document document;
     private File saveFile;
     private Element statKeeper;
 

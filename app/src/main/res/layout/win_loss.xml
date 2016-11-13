@@ -47,11 +47,20 @@
         android:layout_marginEnd="47dp"
         android:id="@+id/addLossButton" />
 
+
+    <Button
+        android:text="Save Stats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/saveStatsButton"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
     <EditText
         android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/win_total_edit_text"
-        android:layout_toEndOf="@+id/add_win_button"
-        android:id="@+id/percentage_edit_text" />
+        android:id="@+id/percentage_edit_text"
+        android:layout_above="@+id/add_win_button"
+        android:layout_alignStart="@+id/saveStatsButton" />
 </RelativeLayout>

@@ -12,10 +12,16 @@ import java.util.Locale;
 public class WinLossActivity extends AppCompatActivity{
 
     WinLossCounter winLossCounter = new WinLossCounter();
-    int wins;
-    int losses;
+    private int wins;
+    private int losses;
 
     protected void onCreate(Bundle savedInstanceState) {
+        Intent intent = getIntent();
+        wins = intent.getIntExtra("wins", 0);
+        losses = intent.getIntExtra("losses", 0);
+        System.out.println(wins + " " + losses);
+        winLossCounter.setWins(wins);
+        winLossCounter.setLosses(losses);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.win_loss);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -25,6 +31,7 @@ public class WinLossActivity extends AppCompatActivity{
     private void addWinOrLoss(){
         Button addWinButton = (Button) findViewById(R.id.add_win_button);
         final EditText totalWins = (EditText) findViewById(R.id.win_total_edit_text);
+        totalWins.setText(String.format(Locale.getDefault(), "%d", wins));
         addWinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,6 +45,7 @@ public class WinLossActivity extends AppCompatActivity{
         });
         Button addLossButton = (Button) findViewById(R.id.addLossButton);
         final EditText totalLosses = (EditText) findViewById(R.id.loss_total_editt_text);
+        totalLosses.setText(String.format(Locale.getDefault(),"%d", losses));
         addLossButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,13 +57,18 @@ public class WinLossActivity extends AppCompatActivity{
                 winPercentage.setText(percentageFormat);
             }
         });
+
+        Button saveStatsButton = (Button) findViewById(R.id.saveStatsButton);
+        saveStatsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("totalWins", wins);
+                intent.putExtra("totalLosses", losses);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        });
     }
 
-    protected void onStop(){
-        super.onStop();
-        Intent intent = new Intent();
-        intent.putExtra("totalWins", wins);
-        intent.putExtra("totalLosses", losses);
-        setResult(RESULT_OK, intent);
-    }
 }

@@ -10,14 +10,13 @@ import android.widget.Toast;
 
 public class CreateStatTrackerActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public String selectedGameVersion;
+    public String selectedGameVersion = "";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_stat_tracker);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         createGameVersionButtons();
     }
 

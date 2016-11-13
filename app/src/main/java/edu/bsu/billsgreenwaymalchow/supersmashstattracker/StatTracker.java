@@ -11,12 +11,20 @@ public class StatTracker{
 
     private String name;
     private String gameVersion;
-    private WinLossCounter winLossCounter = new WinLossCounter();
+    private int wins;
+    private int losses;
 
 
     StatTracker(String name, String gameVersion) throws ParserConfigurationException {
         setName(name);
         setGameVersion(gameVersion);
+    }
+    public void setWins(int wins){
+        this.wins = wins;
+    }
+
+    public void setLosses(int losses){
+        this.losses = losses;
     }
 
     public void setName(String name) {
@@ -36,11 +44,17 @@ public class StatTracker{
     }
 
     public int getWins(){
-        return winLossCounter.getWins();
+        return wins;
     }
 
     public int getLosses(){
-        return winLossCounter.getLosses();
+        return losses;
+    }
+
+
+
+    public void passFileToStatTrackerWriter(File file) throws TransformerException, ParserConfigurationException {
+
     }
 
 }

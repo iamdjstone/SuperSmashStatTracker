@@ -8,7 +8,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -17,6 +22,7 @@ import javax.xml.transform.TransformerException;
 public class StatTrackerActivity extends AppCompatActivity{
 
     private StatTracker thisStatTracker;
+    private ArrayList<StatTracker> statTrackerList = new ArrayList<>();
     private StatTrackerWriter statTrackerWriter = new StatTrackerWriter();
 
     public StatTrackerActivity() throws ParserConfigurationException {
@@ -26,9 +32,46 @@ public class StatTrackerActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stat_tracker_list);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         attemptToCreateNewSaveXML();
         listenForCreateStatTrackerButtonClick();
+        try {
+            createButtons();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+    }
+
+    private void createButtons() throws ParserConfigurationException {
+        NodeList nodeList = statTrackerWriter.document.getElementsByTagName("tracker");
+        LinearLayout statTrackerScrollList = (LinearLayout) findViewById(R.id.linear_layout_scrollbar);
+        LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        for(int i = 0; i < nodeList.getLength(); i++){
+            Intent intent = getIntent();
+            Element e = (Element) nodeList.item(i);
+            int newWins = intent.getIntExtra("totalWins", 1);
+            int newLosses = intent.getIntExtra("totalLosses", 2);
+            thisStatTracker = new StatTracker(e.getAttribute("name"), e.getAttribute("gameVersion"));
+            thisStatTracker.setWins(newWins);
+            thisStatTracker.setLosses(newLosses);
+            statTrackerWriter.updateWinsAndLosses(newWins, newLosses);
+            Button thisStatTrackerButton = new Button(this);
+            thisStatTrackerButton.setText(e.getAttribute("name"));
+            statTrackerScrollList.addView(thisStatTrackerButton, lp);
+            thisStatTrackerButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(StatTrackerActivity.this, WinLossActivity.class);
+                    i.putExtra("wins", thisStatTracker.getWins());
+                    i.putExtra("losses", thisStatTracker.getLosses());
+                    startActivity(i);
+                }
+            });
+        }
     }
 
     public void attemptToCreateNewSaveXML() {
@@ -66,6 +109,7 @@ public class StatTrackerActivity extends AppCompatActivity{
             String gameVersion = data.getStringExtra("gameVersion");
             try {
                 thisStatTracker = new StatTracker(newName, gameVersion);
+                statTrackerList.add(thisStatTracker);
             } catch (ParserConfigurationException e) {
                 e.printStackTrace();
             }
@@ -75,6 +119,8 @@ public class StatTrackerActivity extends AppCompatActivity{
         if ((requestCode == 2) && (resultCode== RESULT_OK)){
             int newWins = data.getIntExtra("totalWins", 1);
             int newLosses = data.getIntExtra("totalLosses", 2);
+            thisStatTracker.setWins(newWins);
+            thisStatTracker.setLosses(newLosses);
             statTrackerWriter.updateWinsAndLosses(newWins, newLosses);
         }
     }
@@ -88,7 +134,7 @@ public class StatTrackerActivity extends AppCompatActivity{
         }
     }
 
-    private void createNewButtonFromName(String newName) {
+    private void createNewButtonFromName(final String newName) {
         Button thisStatTrackerButton = new Button(this);
         thisStatTrackerButton.setText(newName);
         LinearLayout statTrackerScrollList = (LinearLayout) findViewById(R.id.linear_layout_scrollbar);
@@ -98,6 +144,8 @@ public class StatTrackerActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(StatTrackerActivity.this, WinLossActivity.class);
+                i.putExtra("wins", thisStatTracker.getWins());
+                i.putExtra("losses", thisStatTracker.getLosses());
                 startActivityForResult(i, 2);
             }
         });
