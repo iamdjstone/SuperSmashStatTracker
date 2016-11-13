@@ -1,15 +1,13 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
 
-import java.io.File;
-import java.io.FileNotFoundException;
-
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
 
+@SuppressWarnings("WeakerAccess")
 public class StatTracker{
 
     private String name;
+    @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String gameVersion;
     private int wins;
     private int losses;
@@ -39,22 +37,12 @@ public class StatTracker{
         return name;
     }
 
-    public String getGameVersion() {
-        return gameVersion;
-    }
-
     public int getWins(){
         return wins;
     }
 
     public int getLosses(){
         return losses;
-    }
-
-
-
-    public void passFileToStatTrackerWriter(File file) throws TransformerException, ParserConfigurationException {
-
     }
 
 }

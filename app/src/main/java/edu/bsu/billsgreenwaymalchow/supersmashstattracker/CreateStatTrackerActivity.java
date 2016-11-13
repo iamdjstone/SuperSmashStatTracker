@@ -12,7 +12,6 @@ public class CreateStatTrackerActivity extends AppCompatActivity implements View
 
     public String selectedGameVersion = "";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,5 +1,6 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
+@SuppressWarnings("WeakerAccess")
 public class WinLossCounter {
 
     private int wins;
@@ -30,7 +31,7 @@ public class WinLossCounter {
     }
 
     public double getWinPercentage(){
-        return (double)wins/ getTotalMatches() * 100;
+        return (double)wins/ getTotalMatches();
     }
 
     public int getTotalMatches(){

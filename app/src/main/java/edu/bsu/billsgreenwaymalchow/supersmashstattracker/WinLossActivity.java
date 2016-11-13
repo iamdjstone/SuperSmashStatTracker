@@ -16,15 +16,15 @@ public class WinLossActivity extends AppCompatActivity{
     private int losses;
 
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.win_loss);
+        //noinspection ConstantConditions
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         wins = intent.getIntExtra("wins", 0);
         losses = intent.getIntExtra("losses", 0);
-        System.out.println(wins + " " + losses);
         winLossCounter.setWins(wins);
         winLossCounter.setLosses(losses);
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.win_loss);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         addWinOrLoss();
     }
 
@@ -38,7 +38,7 @@ public class WinLossActivity extends AppCompatActivity{
                 winLossCounter.addWin();
                 wins = winLossCounter.getWins();
                 totalWins.setText(String.format(Locale.getDefault(), "%d", wins));
-                final String percentageFormat = String.format(Locale.getDefault(),"%.2f", winLossCounter.getWinPercentage()) + "%";
+                final String percentageFormat = String.format(Locale.getDefault(),"%.2f", winLossCounter.getWinPercentage() * 100) + "%";
                 final EditText winPercentage = (EditText) findViewById(R.id.percentage_edit_text);
                 winPercentage.setText(percentageFormat);
             }
@@ -52,12 +52,11 @@ public class WinLossActivity extends AppCompatActivity{
                 winLossCounter.addLoss();
                 losses = winLossCounter.getLosses();
                 totalLosses.setText(String.format(Locale.getDefault(),"%d", losses));
-                final String percentageFormat = String.format(Locale.getDefault(),"%.2f", winLossCounter.getWinPercentage()) + "%";
+                final String percentageFormat = String.format(Locale.getDefault(),"%.2f", winLossCounter.getWinPercentage() * 100) + "%";
                 final EditText winPercentage = (EditText) findViewById(R.id.percentage_edit_text);
                 winPercentage.setText(percentageFormat);
             }
         });
-
         Button saveStatsButton = (Button) findViewById(R.id.saveStatsButton);
         saveStatsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,5 +69,4 @@ public class WinLossActivity extends AppCompatActivity{
             }
         });
     }
-
 }
