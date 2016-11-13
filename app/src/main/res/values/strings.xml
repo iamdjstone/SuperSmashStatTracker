@@ -5,4 +5,15 @@
     <string name="add_win">Add Win</string>
     <string name="add_loss">Add Loss</string>
     <string name="winPercentage">0%</string>
+    <string name="new_tracker">New Tracker</string>
+    <string name="name">Name:</string>
+    <string name="empty">Empty</string>
+    <string name="submit">Submit</string>
+    <string name="brawl">Brawl</string>
+    <string name="melee">Melee</string>
+    <string name="nintendo_64">Nintendo 64</string>
+    <string name="_3ds">3DS</string>
+    <string name="wii_u">Wii U</string>
+    <string name="start">Start</string>
+    <string name="save_stats">Save Stats</string>
 </resources>

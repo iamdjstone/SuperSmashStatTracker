@@ -11,7 +11,7 @@
     tools:context="edu.bsu.billsgreenwaymalchow.supersmashstattracker.CreateStatTrackerActivity">
 
     <TextView
-        android:text="Name: "
+        android:text="@string/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView" />
@@ -20,13 +20,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Empty"
+        android:text="@string/empty"
         android:ems="10"
         android:layout_marginTop="39dp"
         android:id="@+id/trackerName" />
 
     <Button
-        android:text="Submit"
+        android:text="@string/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/submit_button"
@@ -35,7 +35,7 @@
         android:layout_marginBottom="22dp" />
 
     <Button
-        android:text="Brawl"
+        android:text="@string/brawl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/game_version_brawl"
@@ -45,7 +45,7 @@
         android:layout_marginBottom="61dp" />
 
     <Button
-        android:text="Melee"
+        android:text="@string/melee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/game_version_melee"
@@ -54,7 +54,7 @@
         android:layout_marginBottom="16dp" />
 
     <Button
-        android:text="Nintendo 64"
+        android:text="@string/nintendo_64"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/game_version_64"
@@ -62,7 +62,7 @@
         android:layout_toEndOf="@+id/game_version_melee" />
 
     <Button
-        android:text="3DS"
+        android:text="@string/_3ds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/game_version_3ds"
@@ -71,7 +71,7 @@
         android:layout_alignStart="@+id/game_version_wii_u" />
 
     <Button
-        android:text="Wii U"
+        android:text="@string/wii_u"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/game_version_wii_u"

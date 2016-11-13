@@ -49,7 +49,7 @@
 
 
     <Button
-        android:text="Save Stats"
+        android:text="@string/save_stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/saveStatsButton"
