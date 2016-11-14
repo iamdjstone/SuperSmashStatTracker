@@ -19,23 +19,51 @@ import javax.xml.transform.TransformerException;
 
 public class StatTrackerActivity extends AppCompatActivity{
 
-    private StatTracker thisStatTracker;
     private StatTrackerWriter statTrackerWriter = new StatTrackerWriter();
-
-    public StatTrackerActivity() throws ParserConfigurationException {
-    }
+    private int id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stat_tracker_list);
-        attemptToCreateNewSaveXML();
-        listenForCreateStatTrackerButtonClick();
+        //attemptToCreateNewSaveXML();
+        System.out.println("onCreate");
     }
 
     @Override
     protected void onStart(){
         super.onStart();
+        System.out.println("onStart");
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        System.out.println("onResume");
+        listenForCreateStatTrackerButtonClick();
+        try {
+            createButtons();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        System.out.println("onPause");
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        System.out.println("onStop");
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        System.out.println("onDestroy");
     }
 
     private void createButtons() throws ParserConfigurationException {
@@ -44,9 +72,9 @@ public class StatTrackerActivity extends AppCompatActivity{
         LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         for(int i = 0; i < nodeList.getLength(); i++){
             Element e = (Element) nodeList.item(i);
-            thisStatTracker = new StatTracker(e.getAttribute("name"), e.getAttribute("gameVersion"));
-            thisStatTracker.setWins(Integer.parseInt(e.getAttribute("wins")));
-            thisStatTracker.setLosses(Integer.parseInt(e.getAttribute("losses")));
+            final int id = Integer.parseInt(e.getAttribute("id"));
+            final int wins = Integer.parseInt(e.getAttribute("wins"));
+            final int losses = Integer.parseInt(e.getAttribute("losses"));
             Button thisStatTrackerButton = new Button(this);
             thisStatTrackerButton.setText(e.getAttribute("name"));
             statTrackerScrollList.addView(thisStatTrackerButton, lp);
@@ -54,8 +82,9 @@ public class StatTrackerActivity extends AppCompatActivity{
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(StatTrackerActivity.this, WinLossActivity.class);
-                    i.putExtra("wins", thisStatTracker.getWins());
-                    i.putExtra("losses", thisStatTracker.getLosses());
+                    i.putExtra("id", id);
+                    i.putExtra("wins", wins);
+                    i.putExtra("losses", losses);
                     startActivityForResult(i, 2);
                 }
             });
@@ -92,34 +121,34 @@ public class StatTrackerActivity extends AppCompatActivity{
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
+        System.out.println("onActivityResult");
+        setContentView(R.layout.stat_tracker_list);
         if ((requestCode == 1) && (resultCode== RESULT_OK)){
-            attemptToPushToStatTrackerWriter(data.getStringExtra("trackerName"), data.getStringExtra("gameVersion"));
+            id++;
+            StatTracker newStatTracker = new StatTracker();
+            newStatTracker.setId(id);
+            newStatTracker.setName(data.getStringExtra("trackerName"));
+            newStatTracker.setGameVersion(data.getStringExtra("gameVersion"));
+            newStatTracker.setWins(0);
+            newStatTracker.setLosses(0);
             try {
-                createButtons();
-            } catch (ParserConfigurationException e) {
+                statTrackerWriter.createStatTrackerElement(newStatTracker);
+            } catch (TransformerException e) {
                 e.printStackTrace();
             }
         }
         if ((requestCode == 2) && (resultCode== RESULT_OK)){
-            int newWins = data.getIntExtra("totalWins", 1);
-            int newLosses = data.getIntExtra("totalLosses", 2);
-            thisStatTracker.setWins(newWins);
-            thisStatTracker.setLosses(newLosses);
-            statTrackerWriter.updateWinsAndLosses(newWins, newLosses);
+            int returnId = data.getIntExtra("returnId", 0);
+            int newWins = data.getIntExtra("totalWins", 0);
+            int newLosses = data.getIntExtra("totalLosses", 0);
+            NodeList nodeList = statTrackerWriter.document.getElementsByTagName("tracker");
+            for(int i = 0; i < nodeList.getLength(); i++) {
+                Element e = (Element) nodeList.item(i);
+                if (Integer.parseInt(e.getAttribute("id"))==returnId){
+                    e.setAttribute("wins", Integer.toString(newWins));
+                    e.setAttribute("losses", Integer.toString(newLosses));
+                }
+            }
         }
-    }
-
-    private void attemptToPushToStatTrackerWriter(String name, String gameVersion){
-        try {
-            pushToStatTrackerWriter(name,gameVersion);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void pushToStatTrackerWriter(String name, String gameVersion) throws TransformerException, ParserConfigurationException {
-        statTrackerWriter.createStatTrackerElement();
-        statTrackerWriter.updateNameAndGameVersion(name, gameVersion);
-        statTrackerWriter.updateWinsAndLosses(0, 0);
     }
 }

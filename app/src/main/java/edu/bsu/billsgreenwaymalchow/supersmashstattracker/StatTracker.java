@@ -1,20 +1,24 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
-
-import javax.xml.parsers.ParserConfigurationException;
-
 @SuppressWarnings("WeakerAccess")
 public class StatTracker{
 
+    private int id;
     private String name;
-    @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private String gameVersion;
     private int wins;
     private int losses;
 
-    StatTracker(String name, String gameVersion) throws ParserConfigurationException {
-        setName(name);
-        setGameVersion(gameVersion);
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setGameVersion(String gameVersion){
+        this.gameVersion = gameVersion;
     }
 
     public void setWins(int wins){
@@ -25,16 +29,16 @@ public class StatTracker{
         this.losses = losses;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    private void setGameVersion(String gameVersion){
-        this.gameVersion = gameVersion;
+    public int getId() {
+        return id;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getGameVersion() {
+        return gameVersion;
     }
 
     public int getWins(){

@@ -12,6 +12,7 @@ import java.util.Locale;
 public class WinLossActivity extends AppCompatActivity{
 
     WinLossCounter winLossCounter = new WinLossCounter();
+    private int id;
     private int wins;
     private int losses;
 
@@ -21,6 +22,7 @@ public class WinLossActivity extends AppCompatActivity{
         //noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
+        id = intent.getIntExtra("id", 0);
         wins = intent.getIntExtra("wins", 0);
         losses = intent.getIntExtra("losses", 0);
         winLossCounter.setWins(wins);
@@ -62,6 +64,7 @@ public class WinLossActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
+                intent.putExtra("returnId", id);
                 intent.putExtra("totalWins", wins);
                 intent.putExtra("totalLosses", losses);
                 setResult(RESULT_OK, intent);

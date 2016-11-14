@@ -19,17 +19,18 @@ import javax.xml.transform.stream.StreamResult;
 @SuppressWarnings("WeakerAccess")
 public class StatTrackerWriter {
 
-    private Attr nameAttr;
-    private Attr gameVersionAttr;
-    private Attr winsAttr;
-    private Attr lossesAttr;
     public Document document;
     private File saveFile;
     private Element statKeeper;
 
-    public StatTrackerWriter() throws ParserConfigurationException {
+    public StatTrackerWriter() {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        DocumentBuilder documentBuilder = null;
+        try {
+            documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
         document = documentBuilder.newDocument();
         statKeeper = document.createElement("statKeeper");
         document.appendChild(statKeeper);
@@ -49,26 +50,24 @@ public class StatTrackerWriter {
         transformer.transform(source, result);
     }
 
-    public void createStatTrackerElement() throws TransformerException {
+    public void createStatTrackerElement(StatTracker statTracker) throws TransformerException {
         Element tracker = document.createElement("tracker");
         statKeeper.appendChild(tracker);
-        nameAttr = document.createAttribute("name");
+        Attr idAttr = document.createAttribute("id");
+        tracker.setAttributeNode(idAttr);
+        Attr nameAttr = document.createAttribute("name");
         tracker.setAttributeNode(nameAttr);
-        gameVersionAttr = document.createAttribute("gameVersion");
+        Attr gameVersionAttr = document.createAttribute("gameVersion");
         tracker.setAttributeNode(gameVersionAttr);
-        winsAttr = document.createAttribute("wins");
+        Attr winsAttr = document.createAttribute("wins");
         tracker.setAttributeNode(winsAttr);
-        lossesAttr = document.createAttribute("losses");
+        Attr lossesAttr = document.createAttribute("losses");
         tracker.setAttributeNode(lossesAttr);
-    }
 
-    public void updateNameAndGameVersion(String name, String gameVersion){
-        nameAttr.setValue(name);
-        gameVersionAttr.setValue(gameVersion);
-    }
-
-    public void updateWinsAndLosses(int gameWins, int gameLosses){
-        winsAttr.setValue(String.format(Locale.getDefault(), "%d", gameWins));
-        lossesAttr.setValue(String.format(Locale.getDefault(), "%d", gameLosses));
+        idAttr.setValue(Integer.toString(statTracker.getId()));
+        nameAttr.setValue(statTracker.getName());
+        gameVersionAttr.setValue(statTracker.getGameVersion());
+        winsAttr.setValue(Integer.toString(statTracker.getWins()));
+        lossesAttr.setValue(Integer.toString(statTracker.getLosses()));
     }
 }
