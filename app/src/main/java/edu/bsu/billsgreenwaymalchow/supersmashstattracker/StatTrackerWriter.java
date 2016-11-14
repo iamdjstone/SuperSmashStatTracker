@@ -5,7 +5,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import java.io.File;
-import java.util.Locale;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -31,7 +30,9 @@ public class StatTrackerWriter {
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
-        document = documentBuilder.newDocument();
+        if (documentBuilder != null) {
+            document = documentBuilder.newDocument();
+        }
         statKeeper = document.createElement("statKeeper");
         document.appendChild(statKeeper);
     }
@@ -40,7 +41,7 @@ public class StatTrackerWriter {
         saveFile = file;
     }
 
-    //will use in next iteration
+    //will use in iteration 3
     @SuppressWarnings("unused")
     public void writeToFile() throws TransformerException {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -63,7 +64,6 @@ public class StatTrackerWriter {
         tracker.setAttributeNode(winsAttr);
         Attr lossesAttr = document.createAttribute("losses");
         tracker.setAttributeNode(lossesAttr);
-
         idAttr.setValue(Integer.toString(statTracker.getId()));
         nameAttr.setValue(statTracker.getName());
         gameVersionAttr.setValue(statTracker.getGameVersion());

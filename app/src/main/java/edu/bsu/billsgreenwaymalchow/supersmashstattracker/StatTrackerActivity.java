@@ -26,20 +26,12 @@ public class StatTrackerActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stat_tracker_list);
-        //attemptToCreateNewSaveXML();
-        System.out.println("onCreate");
-    }
-
-    @Override
-    protected void onStart(){
-        super.onStart();
-        System.out.println("onStart");
+        attemptToCreateNewSaveXML();
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-        System.out.println("onResume");
         listenForCreateStatTrackerButtonClick();
         try {
             createButtons();
@@ -49,21 +41,36 @@ public class StatTrackerActivity extends AppCompatActivity{
     }
 
     @Override
-    protected void onPause(){
-        super.onPause();
-        System.out.println("onPause");
-    }
-
-    @Override
-    protected void onStop(){
-        super.onStop();
-        System.out.println("onStop");
-    }
-
-    @Override
     protected void onDestroy(){
         super.onDestroy();
-        System.out.println("onDestroy");
+        //iteration 3 - save data when destroyed
+    }
+
+    private void attemptToCreateNewSaveXML() {
+        try {
+            String FILENAME = "statData.xml";
+            File file = getApplicationContext().getFileStreamPath(FILENAME);
+            if (!file.exists()) {
+                Scanner input = new Scanner(file);
+                while (input.hasNextLine()) {
+                    System.out.println(input.nextLine());
+                }
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private void listenForCreateStatTrackerButtonClick() {
+        Button createStatTrackerButton = (Button) findViewById(R.id.create_stat_tracker_button);
+        createStatTrackerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(StatTrackerActivity.this, CreateStatTrackerActivity.class);
+                startActivityForResult(i, 1);
+            }
+        });
     }
 
     private void createButtons() throws ParserConfigurationException {
@@ -89,33 +96,6 @@ public class StatTrackerActivity extends AppCompatActivity{
                 }
             });
         }
-    }
-
-    public void attemptToCreateNewSaveXML() {
-        try {
-            String FILENAME = "statData.xml";
-            File file = getApplicationContext().getFileStreamPath(FILENAME);
-            if (!file.exists()) {
-                Scanner input = new Scanner(file);
-                while (input.hasNextLine()) {
-                    System.out.println(input.nextLine());
-                }
-            }
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    private void listenForCreateStatTrackerButtonClick() {
-        Button createStatTrackerButton = (Button) findViewById(R.id.create_stat_tracker_button);
-        createStatTrackerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(StatTrackerActivity.this, CreateStatTrackerActivity.class);
-                startActivityForResult(i, 1);
-            }
-        });
     }
 
     @Override
