@@ -19,7 +19,7 @@ public class WinLossActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.win_loss);
-        //noinspection ConstantConditions
+        //noinspection ConstantConditions - back button will never return null because there is always a page before it toreturn to
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         id = intent.getIntExtra("id", 0);
