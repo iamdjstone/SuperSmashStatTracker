@@ -104,30 +104,38 @@ public class StatTrackerActivity extends AppCompatActivity{
         System.out.println("onActivityResult");
         setContentView(R.layout.stat_tracker_list);
         if ((requestCode == 1) && (resultCode== RESULT_OK)){
-            id++;
-            StatTracker newStatTracker = new StatTracker();
-            newStatTracker.setId(id);
-            newStatTracker.setName(data.getStringExtra("trackerName"));
-            newStatTracker.setGameVersion(data.getStringExtra("gameVersion"));
-            newStatTracker.setWins(0);
-            newStatTracker.setLosses(0);
-            try {
-                statTrackerWriter.createStatTrackerElement(newStatTracker);
-            } catch (TransformerException e) {
-                e.printStackTrace();
-            }
+            createElementFromNewStatTracker(data);
         }
         if ((requestCode == 2) && (resultCode== RESULT_OK)){
-            int returnId = data.getIntExtra("returnId", 0);
-            int newWins = data.getIntExtra("totalWins", 0);
-            int newLosses = data.getIntExtra("totalLosses", 0);
-            NodeList nodeList = statTrackerWriter.document.getElementsByTagName("tracker");
-            for(int i = 0; i < nodeList.getLength(); i++) {
-                Element e = (Element) nodeList.item(i);
-                if (Integer.parseInt(e.getAttribute("id"))==returnId){
-                    e.setAttribute("wins", Integer.toString(newWins));
-                    e.setAttribute("losses", Integer.toString(newLosses));
-                }
+            updateWinsAndLossesForElement(data);
+        }
+    }
+
+    private void createElementFromNewStatTracker(Intent data) {
+        id++;
+        StatTracker newStatTracker = new StatTracker();
+        newStatTracker.setId(id);
+        newStatTracker.setName(data.getStringExtra("trackerName"));
+        newStatTracker.setGameVersion(data.getStringExtra("gameVersion"));
+        newStatTracker.setWins(0);
+        newStatTracker.setLosses(0);
+        try {
+            statTrackerWriter.createStatTrackerElement(newStatTracker);
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateWinsAndLossesForElement(Intent data) {
+        int returnId = data.getIntExtra("returnId", 0);
+        int newWins = data.getIntExtra("totalWins", 0);
+        int newLosses = data.getIntExtra("totalLosses", 0);
+        NodeList nodeList = statTrackerWriter.document.getElementsByTagName("tracker");
+        for(int i = 0; i < nodeList.getLength(); i++) {
+            Element e = (Element) nodeList.item(i);
+            if (Integer.parseInt(e.getAttribute("id"))==returnId){
+                e.setAttribute("wins", Integer.toString(newWins));
+                e.setAttribute("losses", Integer.toString(newLosses));
             }
         }
     }
