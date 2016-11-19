@@ -1,7 +1,7 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
 @SuppressWarnings("WeakerAccess")
-public class StatTracker{
+public class StatHolder {
 
     private int id;
     private String name;

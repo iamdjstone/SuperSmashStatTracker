@@ -21,6 +21,8 @@ public class StatTrackerActivity extends AppCompatActivity{
 
     private StatTrackerWriter statTrackerWriter = new StatTrackerWriter();
     private int id = 0;
+    static final private int NAME_GAMEVERSION = 1;
+    static final private int WIN_LOSS = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +70,7 @@ public class StatTrackerActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(StatTrackerActivity.this, CreateStatTrackerActivity.class);
-                startActivityForResult(i, 1);
+                startActivityForResult(i, NAME_GAMEVERSION);
             }
         });
     }
@@ -92,7 +94,7 @@ public class StatTrackerActivity extends AppCompatActivity{
                     i.putExtra("id", id);
                     i.putExtra("wins", wins);
                     i.putExtra("losses", losses);
-                    startActivityForResult(i, 2);
+                    startActivityForResult(i, WIN_LOSS);
                 }
             });
         }
@@ -103,24 +105,24 @@ public class StatTrackerActivity extends AppCompatActivity{
         super.onActivityResult(requestCode,resultCode,data);
         System.out.println("onActivityResult");
         setContentView(R.layout.stat_tracker_list);
-        if ((requestCode == 1) && (resultCode== RESULT_OK)){
+        if ((requestCode == NAME_GAMEVERSION) && (resultCode== RESULT_OK)){
             createElementFromNewStatTracker(data);
         }
-        if ((requestCode == 2) && (resultCode== RESULT_OK)){
+        if ((requestCode == WIN_LOSS) && (resultCode== RESULT_OK)){
             updateWinsAndLossesForElement(data);
         }
     }
 
     private void createElementFromNewStatTracker(Intent data) {
         id++;
-        StatTracker newStatTracker = new StatTracker();
-        newStatTracker.setId(id);
-        newStatTracker.setName(data.getStringExtra("trackerName"));
-        newStatTracker.setGameVersion(data.getStringExtra("gameVersion"));
-        newStatTracker.setWins(0);
-        newStatTracker.setLosses(0);
+        StatHolder newStatHolder = new StatHolder();
+        newStatHolder.setId(id);
+        newStatHolder.setName(data.getStringExtra("trackerName"));
+        newStatHolder.setGameVersion(data.getStringExtra("gameVersion"));
+        newStatHolder.setWins(0);
+        newStatHolder.setLosses(0);
         try {
-            statTrackerWriter.createStatTrackerElement(newStatTracker);
+            statTrackerWriter.createStatTrackerElement(newStatHolder);
         } catch (TransformerException e) {
             e.printStackTrace();
         }
