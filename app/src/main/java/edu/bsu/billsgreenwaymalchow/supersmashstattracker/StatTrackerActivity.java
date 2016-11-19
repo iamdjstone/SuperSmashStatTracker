@@ -19,7 +19,7 @@ import javax.xml.transform.TransformerException;
 
 public class StatTrackerActivity extends AppCompatActivity{
 
-    private StatTrackerWriter statTrackerWriter = new StatTrackerWriter();
+    private StatWriter statWriter = new StatWriter();
     private int id = 0;
     static final private int NAME_GAMEVERSION = 1;
     static final private int WIN_LOSS = 2;
@@ -51,7 +51,7 @@ public class StatTrackerActivity extends AppCompatActivity{
         try {
             String FILENAME = "statData.xml";
             File file = getApplicationContext().getFileStreamPath(FILENAME);
-            statTrackerWriter.writeToFile(file);
+            statWriter.writeToFile(file);
             Scanner input = new Scanner(file);
             while (input.hasNextLine()) {
                 System.out.println(input.nextLine());
@@ -74,7 +74,7 @@ public class StatTrackerActivity extends AppCompatActivity{
     }
 
     private void createButtons() throws ParserConfigurationException {
-        NodeList nodeList = statTrackerWriter.document.getElementsByTagName("tracker");
+        NodeList nodeList = statWriter.document.getElementsByTagName("tracker");
         LinearLayout statTrackerScrollList = (LinearLayout) findViewById(R.id.linear_layout_scrollbar);
         LayoutParams lp = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         for(int i = 0; i < nodeList.getLength(); i++){
@@ -119,7 +119,7 @@ public class StatTrackerActivity extends AppCompatActivity{
         newStatHolder.setWins(0);
         newStatHolder.setLosses(0);
         try {
-            statTrackerWriter.createStatTrackerElement(newStatHolder);
+            statWriter.createStatTrackerElement(newStatHolder);
         } catch (TransformerException e) {
             e.printStackTrace();
         }
@@ -129,7 +129,7 @@ public class StatTrackerActivity extends AppCompatActivity{
         int returnId = data.getIntExtra("returnId", 0);
         int newWins = data.getIntExtra("totalWins", 0);
         int newLosses = data.getIntExtra("totalLosses", 0);
-        NodeList nodeList = statTrackerWriter.document.getElementsByTagName("tracker");
+        NodeList nodeList = statWriter.document.getElementsByTagName("tracker");
         for(int i = 0; i < nodeList.getLength(); i++) {
             Element e = (Element) nodeList.item(i);
             if (Integer.parseInt(e.getAttribute("id"))==returnId){

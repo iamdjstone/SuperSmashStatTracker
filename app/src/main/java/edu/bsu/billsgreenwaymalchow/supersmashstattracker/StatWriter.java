@@ -16,12 +16,12 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 @SuppressWarnings("WeakerAccess")
-public class StatTrackerWriter {
+public class StatWriter {
 
     public Document document;
     private Element statKeeper;
 
-    public StatTrackerWriter() {
+    public StatWriter() {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = null;
         try {
