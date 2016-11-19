@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 public class CreateStatTrackerActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private String selectedGameVersion = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +36,6 @@ public class CreateStatTrackerActivity extends AppCompatActivity implements View
 
     @Override
     public void onClick(View v){
-        String selectedGameVersion = "";
         switch (v.getId()){
             case R.id.game_version_64:
                 selectedGameVersion = "Nintendo 64";

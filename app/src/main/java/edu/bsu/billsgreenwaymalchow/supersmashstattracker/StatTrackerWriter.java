@@ -19,7 +19,6 @@ import javax.xml.transform.stream.StreamResult;
 public class StatTrackerWriter {
 
     public Document document;
-    private File saveFile;
     private Element statKeeper;
 
     public StatTrackerWriter() {
@@ -37,13 +36,7 @@ public class StatTrackerWriter {
         document.appendChild(statKeeper);
     }
 
-    public void setFile(File file) {
-        saveFile = file;
-    }
-
-    //will use in iteration 3
-    @SuppressWarnings("unused")
-    public void writeToFile() throws TransformerException {
+    public void writeToFile(File saveFile) throws TransformerException {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
         DOMSource source = new DOMSource(document);

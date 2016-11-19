@@ -28,7 +28,6 @@ public class StatTrackerActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stat_tracker_list);
-        attemptToCreateNewSaveXML();
     }
 
     @Override
@@ -45,18 +44,17 @@ public class StatTrackerActivity extends AppCompatActivity{
     @Override
     protected void onDestroy(){
         super.onDestroy();
-        //iteration 3 - save data when destroyed
+        attemptToCreateNewSaveXML();
     }
 
     private void attemptToCreateNewSaveXML() {
         try {
             String FILENAME = "statData.xml";
             File file = getApplicationContext().getFileStreamPath(FILENAME);
-            if (!file.exists()) {
-                Scanner input = new Scanner(file);
-                while (input.hasNextLine()) {
-                    System.out.println(input.nextLine());
-                }
+            statTrackerWriter.writeToFile(file);
+            Scanner input = new Scanner(file);
+            while (input.hasNextLine()) {
+                System.out.println(input.nextLine());
             }
         }
         catch(Exception e){
@@ -103,7 +101,6 @@ public class StatTrackerActivity extends AppCompatActivity{
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
-        System.out.println("onActivityResult");
         setContentView(R.layout.stat_tracker_list);
         if ((requestCode == NAME_GAMEVERSION) && (resultCode== RESULT_OK)){
             createElementFromNewStatTracker(data);
