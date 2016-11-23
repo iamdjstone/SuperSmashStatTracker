@@ -11,13 +11,19 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class StatReader {
 
-    public void createDocument(InputStream inputStream){
+    private Document document;
+
+    public void createDocument(File file){
         try {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            Document document = documentBuilder.parse(inputStream);
+            document = documentBuilder.parse(file);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public Document getDocument(){
+        return document;
     }
 }

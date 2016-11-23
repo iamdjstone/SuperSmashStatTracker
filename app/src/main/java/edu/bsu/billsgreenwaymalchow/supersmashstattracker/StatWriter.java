@@ -3,6 +3,7 @@ package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 import java.io.File;
 
@@ -32,6 +33,9 @@ public class StatWriter {
         if (documentBuilder != null) {
             document = documentBuilder.newDocument();
         }
+    }
+
+    public void createMainElement(){
         statKeeper = document.createElement("statKeeper");
         document.appendChild(statKeeper);
     }
@@ -62,5 +66,11 @@ public class StatWriter {
         gameVersionAttr.setValue(statHolder.getGameVersion());
         winsAttr.setValue(Integer.toString(statHolder.getWins()));
         lossesAttr.setValue(Integer.toString(statHolder.getLosses()));
+    }
+
+    public void setDocument(Document document){
+        this.document = document;
+        NodeList nodeList = document.getElementsByTagName("statKeeper");
+        statKeeper = (Element) nodeList.item(0);
     }
 }

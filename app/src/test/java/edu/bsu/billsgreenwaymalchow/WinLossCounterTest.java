@@ -1,8 +1,10 @@
-package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
+package edu.bsu.billsgreenwaymalchow;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import edu.bsu.billsgreenwaymalchow.supersmashstattracker.WinLossCounter;
 
 import static org.junit.Assert.*;
 

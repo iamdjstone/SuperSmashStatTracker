@@ -20,6 +20,7 @@ import javax.xml.transform.TransformerException;
 public class StatTrackerActivity extends AppCompatActivity{
 
     private StatWriter statWriter = new StatWriter();
+    private StatReader statReader = new StatReader();
     private int id = 0;
     static final private int NAME_GAMEVERSION = 1;
     static final private int WIN_LOSS = 2;
@@ -28,6 +29,7 @@ public class StatTrackerActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stat_tracker_list);
+        reloadData();
     }
 
     @Override
@@ -47,10 +49,21 @@ public class StatTrackerActivity extends AppCompatActivity{
         attemptToCreateNewSaveXML();
     }
 
+    private void reloadData(){
+        String FILENAME = "statData.xml";
+        File file = getApplicationContext().getFileStreamPath(FILENAME);
+        if(file.exists()){
+            statReader.createDocument(file);
+            statWriter.setDocument(statReader.getDocument());
+        } else {
+            statWriter.createMainElement();
+        }
+    }
+
     private void attemptToCreateNewSaveXML() {
+        String FILENAME = "statData.xml";
+        File file = getApplicationContext().getFileStreamPath(FILENAME);
         try {
-            String FILENAME = "statData.xml";
-            File file = getApplicationContext().getFileStreamPath(FILENAME);
             statWriter.writeToFile(file);
             Scanner input = new Scanner(file);
             while (input.hasNextLine()) {
