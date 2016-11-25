@@ -34,15 +34,14 @@ public class WinLossActivity extends AppCompatActivity{
         Button addWinButton = (Button) findViewById(R.id.add_win_button);
         final EditText totalWins = (EditText) findViewById(R.id.win_total_edit_text);
         totalWins.setText(String.format(Locale.getDefault(), "%d", wins));
+        updatePercentage();
         addWinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 winLossCounter.addWin();
                 wins = winLossCounter.getWins();
                 totalWins.setText(String.format(Locale.getDefault(), "%d", wins));
-                final String percentageFormat = String.format(Locale.getDefault(),"%.2f", winLossCounter.getWinPercentage() * 100) + "%";
-                final EditText winPercentage = (EditText) findViewById(R.id.percentage_edit_text);
-                winPercentage.setText(percentageFormat);
+                updatePercentage();
             }
         });
         Button addLossButton = (Button) findViewById(R.id.addLossButton);
@@ -54,9 +53,7 @@ public class WinLossActivity extends AppCompatActivity{
                 winLossCounter.addLoss();
                 losses = winLossCounter.getLosses();
                 totalLosses.setText(String.format(Locale.getDefault(),"%d", losses));
-                final String percentageFormat = String.format(Locale.getDefault(),"%.2f", winLossCounter.getWinPercentage() * 100) + "%";
-                final EditText winPercentage = (EditText) findViewById(R.id.percentage_edit_text);
-                winPercentage.setText(percentageFormat);
+                updatePercentage();
             }
         });
         Button saveStatsButton = (Button) findViewById(R.id.saveStatsButton);
@@ -71,5 +68,16 @@ public class WinLossActivity extends AppCompatActivity{
                 finish();
             }
         });
+    }
+
+    private void updatePercentage(){
+        final EditText winPercentage = (EditText) findViewById(R.id.percentage_edit_text);
+        if(!Double.isNaN(winLossCounter.getWinPercentage())) {
+            final String percentageFormat = String.format(Locale.getDefault(), "%.2f", winLossCounter.getWinPercentage() * 100) + "%";
+            winPercentage.setText(percentageFormat);
+        }
+        else{
+            winPercentage.setText("0.00%");
+        }
     }
 }

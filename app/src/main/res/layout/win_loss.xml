@@ -63,4 +63,5 @@
         android:id="@+id/percentage_edit_text"
         android:layout_above="@+id/add_win_button"
         android:layout_alignStart="@+id/saveStatsButton" />
+
 </RelativeLayout>
