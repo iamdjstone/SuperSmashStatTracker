@@ -29,7 +29,7 @@ public class StatTrackerActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stat_tracker_list);
-        reloadData();
+        loadData();
     }
 
     @Override
@@ -49,11 +49,12 @@ public class StatTrackerActivity extends AppCompatActivity{
         attemptToCreateNewSaveXML();
     }
 
-    private void reloadData(){
+    private void loadData(){
         String FILENAME = "statData.xml";
         File file = getApplicationContext().getFileStreamPath(FILENAME);
         if(file.exists()){
             statReader.createDocument(file);
+            id = statReader.findTotalNumberOfTrackers();
             statWriter.setDocument(statReader.getDocument());
         } else {
             statWriter.createMainElement();
@@ -137,6 +138,7 @@ public class StatTrackerActivity extends AppCompatActivity{
             e.printStackTrace();
         }
     }
+
 
     private void updateWinsAndLossesForElement(Intent data) {
         int returnId = data.getIntExtra("returnId", 0);

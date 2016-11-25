@@ -1,17 +1,16 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
 import org.w3c.dom.Document;
-
+import org.w3c.dom.NodeList;
 import java.io.File;
 import java.io.InputStream;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+
 
 public class StatReader {
 
-    private Document document;
+    public Document document;
 
     public void createDocument(File file){
         try {
@@ -23,7 +22,25 @@ public class StatReader {
         }
     }
 
+    public Document createDocumentForTest(InputStream inputStream){
+        try {
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder;
+            documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            document = documentBuilder.parse(inputStream);
+            return document;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return document;
+        }
+    }
+
     public Document getDocument(){
         return document;
+    }
+
+    public int findTotalNumberOfTrackers(){
+        NodeList nodeList = document.getElementsByTagName("tracker");
+        return nodeList.getLength();
     }
 }

@@ -23,15 +23,16 @@ public class StatWriter {
     private Element statKeeper;
 
     public StatWriter() {
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder documentBuilder = null;
+
         try {
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = null;
             documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            if (documentBuilder != null) {
+                document = documentBuilder.newDocument();
+            }
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
-        }
-        if (documentBuilder != null) {
-            document = documentBuilder.newDocument();
         }
     }
 
