@@ -25,8 +25,7 @@ public class StatReader {
     public Document createDocumentForTest(InputStream inputStream){
         try {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder documentBuilder;
-            documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             document = documentBuilder.parse(inputStream);
             return document;
         } catch (Exception e) {

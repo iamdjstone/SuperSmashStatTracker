@@ -26,25 +26,26 @@ public class StatReaderTest {
 
     private StatReader statReader;
     private InputStream inputStream;
+    private Document document;
 
     @Before
     public void setUp() throws ParserConfigurationException, IOException, SAXException {
 //        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("TestAsset.xml");
         inputStream = new FileInputStream("/Users/dakotamalchow/AndroidStudioProjects/SuperSmashStatTracker/app/src/test/assets/TestAsset.xml");
         statReader = new StatReader();
+        document = statReader.createDocumentForTest(inputStream);
     }
 
     @Test
     public void testDOMReturnsCorrectAttribute(){
-        Document document = statReader.createDocumentForTest(inputStream);
         NodeList nodeList = document.getElementsByTagName("tracker");
         Element firstElement = (Element)nodeList.item(0);
         Assert.assertEquals("vs Gestwicki", firstElement.getAttribute("name"));
     }
 
+    @Test
     public void testDOMReturnsCorrectNumberOfStatTrackers(){
         int totalNumberOfTrackers = statReader.findTotalNumberOfTrackers();
         Assert.assertEquals(2, totalNumberOfTrackers);
     }
-
 }
