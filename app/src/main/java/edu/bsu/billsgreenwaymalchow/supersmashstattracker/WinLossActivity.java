@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.Locale;
 
@@ -32,7 +33,7 @@ public class WinLossActivity extends AppCompatActivity{
 
     private void addWinOrLoss(){
         Button addWinButton = (Button) findViewById(R.id.add_win_button);
-        final EditText totalWins = (EditText) findViewById(R.id.win_total_edit_text);
+        final TextView totalWins = (TextView) findViewById(R.id.total_wins_text_view);
         totalWins.setText(String.format(Locale.getDefault(), "%d", wins));
         updatePercentage();
         addWinButton.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +46,7 @@ public class WinLossActivity extends AppCompatActivity{
             }
         });
         Button addLossButton = (Button) findViewById(R.id.addLossButton);
-        final EditText totalLosses = (EditText) findViewById(R.id.loss_total_editt_text);
+        final TextView totalLosses = (TextView) findViewById(R.id.total_losses_text_view);
         totalLosses.setText(String.format(Locale.getDefault(),"%d", losses));
         addLossButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +72,7 @@ public class WinLossActivity extends AppCompatActivity{
     }
 
     private void updatePercentage(){
-        final EditText winPercentage = (EditText) findViewById(R.id.percentage_edit_text);
+        final TextView winPercentage = (TextView) findViewById(R.id.win_percentage_text_view);
         if(!Double.isNaN(winLossCounter.getWinPercentage())) {
             final String percentageFormat = String.format(Locale.getDefault(), "%.2f", winLossCounter.getWinPercentage() * 100) + "%";
             winPercentage.setText(percentageFormat);

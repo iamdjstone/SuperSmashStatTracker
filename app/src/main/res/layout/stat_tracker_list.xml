@@ -37,10 +37,11 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="98dp"
                 android:weightSum="1"
-                android:id="@+id/linear_layout_scrollbar">
+                android:id="@+id/linear_layout_scrollbar"
+                android:layout_height="wrap_content"
+                android:elevation="0dp"
+                android:paddingBottom="30dp">
 
             </LinearLayout>
 
