@@ -21,6 +21,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import edu.bsu.billsgreenwaymalchow.supersmashstattracker.StatReader;
+import edu.bsu.billsgreenwaymalchow.supersmashstattracker.StatWriter;
 
 public class StatReaderTest {
 
@@ -46,6 +47,13 @@ public class StatReaderTest {
     @Test
     public void testDOMReturnsCorrectNumberOfStatTrackers(){
         int totalNumberOfTrackers = statReader.findTotalNumberOfTrackers();
-        Assert.assertEquals(2, totalNumberOfTrackers);
+        Assert.assertEquals(3, totalNumberOfTrackers);
+    }
+
+    @Test
+    public void testWriterFindsMostPlayedGameVersion(){
+        StatWriter statWriter =  new StatWriter();
+        statWriter.setDocument(statReader.getDocument());
+        Assert.assertEquals("Brawl", statWriter.findMostPlayedGameVersion());
     }
 }
