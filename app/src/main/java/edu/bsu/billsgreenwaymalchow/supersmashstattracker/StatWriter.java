@@ -96,10 +96,13 @@ public class StatWriter {
             for (HashMap.Entry<String, Integer> entry : gameVersionPlays.entrySet()) {
                 if(entry.getKey().equals(e.getAttribute("gameVersion"))){
                     entry.setValue(entry.getValue() + trackerPlays);
-                }
-                if(entry.getValue()>plays){
-                    plays = entry.getValue();
-                    gameVersion =  e.getAttribute("gameVersion");
+                    if(entry.getValue()==plays){
+                        gameVersion = "Multiple";
+                    }
+                    if(entry.getValue()>plays){
+                        plays = entry.getValue();
+                        gameVersion =  e.getAttribute("gameVersion");
+                    }
                 }
             }
         }
