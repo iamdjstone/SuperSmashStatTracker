@@ -86,7 +86,7 @@ public class StatWriter {
         gameVersionPlays.put("3DS",0);
         NodeList nodeList = document.getElementsByTagName("tracker");
         if(nodeList.getLength()==0){
-            return gameVersion;
+            return "None";
         }
         int plays = 0;
         for(int i = 0; i < nodeList.getLength(); i++) {

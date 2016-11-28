@@ -48,4 +48,14 @@
         </ScrollView>
 
     </LinearLayout>
+
+    <TextView
+        android:text="Most Played Game Version: No Games "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:id="@+id/most_played_game_version"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
