@@ -76,4 +76,7 @@ public class StatWriter {
         statKeeper = (Element) nodeList.item(0);
     }
 
+    public Document getDocument(){
+        return document;
+    }
 }

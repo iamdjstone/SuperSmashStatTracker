@@ -16,4 +16,5 @@
     <string name="wii_u">Wii U</string>
     <string name="start">Start</string>
     <string name="save_stats">Save Stats</string>
+    <string name="most_played_game_version">"Most Played Game Version: "</string>
 </resources>
