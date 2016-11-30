@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import edu.bsu.billsgreenwaymalchow.supersmashstattracker.WinLossCounter;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class WinLossCounterTest {
 

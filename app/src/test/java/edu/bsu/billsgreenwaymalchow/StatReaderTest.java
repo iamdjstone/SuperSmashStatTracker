@@ -8,20 +8,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.Scanner;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import edu.bsu.billsgreenwaymalchow.supersmashstattracker.StatReader;
-import edu.bsu.billsgreenwaymalchow.supersmashstattracker.StatWriter;
 
 public class StatReaderTest {
 
