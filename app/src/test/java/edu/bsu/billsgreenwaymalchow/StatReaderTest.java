@@ -49,21 +49,4 @@ public class StatReaderTest {
         int totalNumberOfTrackers = statReader.findTotalNumberOfTrackers();
         Assert.assertEquals(3, totalNumberOfTrackers);
     }
-
-    @Test
-    public void testWriterFindsMostPlayedGameVersion(){
-        StatWriter statWriter =  new StatWriter();
-        statWriter.setDocument(statReader.getDocument());
-        Assert.assertEquals("Brawl", statWriter.findMostPlayedGameVersion());
-    }
-
-    @Test
-    public void testWriterFindsTieForMostPlayedGameVersion(){
-        NodeList nodeList = document.getElementsByTagName("tracker");
-        Element firstElement = (Element)nodeList.item(0);
-        firstElement.setAttribute("wins", "6000");
-        StatWriter statWriter =  new StatWriter();
-        statWriter.setDocument(document);
-        Assert.assertEquals("Multiple", statWriter.findMostPlayedGameVersion());
-    }
 }
