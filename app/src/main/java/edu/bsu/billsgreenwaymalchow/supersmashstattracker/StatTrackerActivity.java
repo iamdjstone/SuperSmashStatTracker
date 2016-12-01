@@ -22,7 +22,6 @@ public class StatTrackerActivity extends AppCompatActivity{
 
     private StatWriter statWriter = new StatWriter();
     private StatReader statReader = new StatReader();
-    private StatFinder statFinder = new StatFinder();
     private int id = 0;
     static final private int NAME_GAMEVERSION = 1;
     static final private int WIN_LOSS = 2;
@@ -117,7 +116,8 @@ public class StatTrackerActivity extends AppCompatActivity{
 
     private void updateMostPlayedGameVersion() {
         TextView mostPlayedGameVersionTextView = (TextView) findViewById(R.id.most_played_game_version);
-        String textViewText = "Most Played Game Version: " + statFinder.findMostPlayedGameVersion(statWriter.getDocument());
+        MostPlayedGameVersionFinder mostPlayedGameVersionFinder = new MostPlayedGameVersionFinder(statWriter.getDocument());
+        String textViewText = "Most Played Game Version: " + mostPlayedGameVersionFinder.findMostPlayedGameVersion();
         mostPlayedGameVersionTextView.setText(textViewText);
     }
 

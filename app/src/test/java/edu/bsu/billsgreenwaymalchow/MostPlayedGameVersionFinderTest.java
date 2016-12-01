@@ -16,25 +16,25 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import edu.bsu.billsgreenwaymalchow.supersmashstattracker.StatFinder;
+import edu.bsu.billsgreenwaymalchow.supersmashstattracker.MostPlayedGameVersionFinder;
 
-public class StatFinderTest {
+public class MostPlayedGameVersionFinderTest {
 
     Document document;
-    StatFinder statFinder;
+    MostPlayedGameVersionFinder mostPlayedGameVersionFinder;
 
     @Before
     public void setUp() throws ParserConfigurationException, IOException, SAXException {
         InputStream inputStream = new FileInputStream("/Users/dakotamalchow/AndroidStudioProjects/SuperSmashStatTracker/app/src/test/assets/TestAsset.xml");
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        statFinder = new StatFinder();
+        mostPlayedGameVersionFinder = new MostPlayedGameVersionFinder();
         document = documentBuilder.parse(inputStream);
     }
 
     @Test
     public void testStatFinderFindsMostPlayedGameVersion(){
-        String mostPlayedGameVersion = statFinder.findMostPlayedGameVersion(document);
+        String mostPlayedGameVersion = mostPlayedGameVersionFinder.findMostPlayedGameVersion(document);
         Assert.assertEquals("Brawl", mostPlayedGameVersion);
     }
 
@@ -43,6 +43,6 @@ public class StatFinderTest {
         NodeList nodeList = document.getElementsByTagName("tracker");
         Element firstElement = (Element)nodeList.item(0);
         firstElement.setAttribute("wins", "6000");
-        Assert.assertEquals("Multiple", statFinder.findMostPlayedGameVersion(document));
+        Assert.assertEquals("Multiple", mostPlayedGameVersionFinder.findMostPlayedGameVersion(document));
     }
 }
