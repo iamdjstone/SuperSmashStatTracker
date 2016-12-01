@@ -6,7 +6,7 @@ import org.w3c.dom.NodeList;
 
 import java.util.HashMap;
 
-public class MostPlayedGameVersionFinderK {
+public class MostPlayedGameVersionFinder {
 
     private String mostPlayedGameVersion = "";
     private HashMap<String, Integer> gameVersionPlays;
