@@ -40,6 +40,20 @@ public class StatFinderTest {
     }
 
     @Test
+    public void testWriterFindsNoMostPlayedGameVersion(){
+        NodeList nodeList = document.getElementsByTagName("tracker");
+        Element firstElement = (Element)nodeList.item(0);
+        Element secondElement = (Element)nodeList.item(1);
+        Element thirdElement = (Element)nodeList.item(2);
+        firstElement.setAttribute("wins", "0");
+        secondElement.setAttribute("wins", "0");
+        secondElement.setAttribute("losses", "0");
+        thirdElement.setAttribute("wins", "0");
+        thirdElement.setAttribute("losses", "0");
+        Assert.assertEquals("None", statFinder.findMostPlayedGameVersion());
+    }
+
+    @Test
     public void testWriterFindsTieForMostPlayedGameVersion(){
         NodeList nodeList = document.getElementsByTagName("tracker");
         Element firstElement = (Element)nodeList.item(0);

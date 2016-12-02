@@ -24,7 +24,8 @@ public class StatFinder {
     }
 
     public String findMostPlayedGameVersion(){
-        if (nodeList.getLength() == 0) {
+        calculateTotals();
+        if (nodeList.getLength() == 0 || getTotalMatches() == 0) {
             mostPlayedGameVersion = "None";
         } else {
             initializeHashMapForGameVersions();
