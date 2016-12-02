@@ -24,9 +24,12 @@ public class StatFinder {
     }
 
     public String findMostPlayedGameVersion(){
-        initializeHashMapForGameVersions();
-        checkIfDocumentHasTrackers();
-        countTrackerPlays();
+        if (nodeList.getLength() == 0) {
+            mostPlayedGameVersion = "None";
+        } else {
+            initializeHashMapForGameVersions();
+            countTrackerPlays();
+        }
         return mostPlayedGameVersion;
     }
 
@@ -49,10 +52,6 @@ public class StatFinder {
 
     public int getTotalMatches(){
         return totalWins + totalLosses;
-    }
-
-    public double calculateWinPercentage(){
-        return (double)totalWins / getTotalMatches();
     }
 
     private void initializeHashMapForGameVersions() {

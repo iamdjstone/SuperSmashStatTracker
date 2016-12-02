@@ -117,10 +117,15 @@ public class StatTrackerActivity extends AppCompatActivity{
     private void updateMostPlayedGameVersion() {
         TextView mostPlayedGameVersionTextView = (TextView) findViewById(R.id.most_played_game_version);
         StatFinder statFinder = new StatFinder(statWriter.getDocument());
-        String textViewText = "Most Played Game Version: " + statFinder.findMostPlayedGameVersion();
-        statFinder.getTotalWins();
-        statFinder.getTotalLosses();
-        mostPlayedGameVersionTextView.setText(textViewText);
+        statFinder.calculateTotals();
+        String gameVersionText = "Most Played Game Version: " + statFinder.findMostPlayedGameVersion();
+        mostPlayedGameVersionTextView.setText(gameVersionText);
+        TextView totalWins = (TextView) findViewById(R.id.totalWins);
+        TextView totalLosses = (TextView) findViewById(R.id.totalLosses);
+        String totalWinsText = "Total Wins: " + statFinder.getTotalWins();
+        String totalLossesText = "Total Losses: " + statFinder.getTotalLosses();
+        totalWins.setText(totalWinsText);
+        totalLosses.setText(totalLossesText);
     }
 
     @Override

@@ -58,4 +58,21 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:text="Total Wins: 0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/most_played_game_version"
+        android:layout_alignStart="@+id/most_played_game_version"
+        android:layout_marginTop="23dp"
+        android:id="@+id/totalWins" />
+
+    <TextView
+        android:text="Total Losses: 0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/totalWins"
+        android:layout_alignEnd="@+id/most_played_game_version"
+        android:id="@+id/totalLosses" />
+
 </RelativeLayout>
