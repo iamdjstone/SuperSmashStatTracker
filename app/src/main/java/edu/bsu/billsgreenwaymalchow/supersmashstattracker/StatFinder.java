@@ -11,20 +11,15 @@ public class StatFinder {
     private String mostPlayedGameVersion = "";
     private HashMap<String, Integer> gameVersionPlays;
     private int plays;
-    private Document document;
     private NodeList nodeList;
     private int totalWins = 0;
     private int totalLosses = 0;
-    private int totalMatches;
-    private double totalWinPercentage;
 
     public StatFinder(Document document){
-        this.document = document;
         nodeList = document.getElementsByTagName("tracker");
     }
 
     public String findMostPlayedGameVersion(){
-        checkIfDocumentHasTrackers();
         initializeHashMapForGameVersions();
         if (countTrackerPlays()==0){
             mostPlayedGameVersion = "None";
@@ -38,7 +33,6 @@ public class StatFinder {
             totalWins += Integer.parseInt(e.getAttribute("wins"));
             totalLosses += Integer.parseInt(e.getAttribute("losses"));
         }
-        totalMatches = totalWins + totalLosses;
     }
 
     public int getTotalWins(){
@@ -49,10 +43,6 @@ public class StatFinder {
         return totalLosses;
     }
 
-    public int getTotalMatches(){
-        return totalWins + totalLosses;
-    }
-
     private void initializeHashMapForGameVersions() {
         gameVersionPlays = new HashMap<>();
         gameVersionPlays.put("Nintendo 64", 0);
@@ -60,12 +50,6 @@ public class StatFinder {
         gameVersionPlays.put("Brawl", 0);
         gameVersionPlays.put("Wii U", 0);
         gameVersionPlays.put("3DS", 0);
-    }
-
-    private void checkIfDocumentHasTrackers() {
-        if (nodeList.getLength() == 0) {
-            mostPlayedGameVersion = "None";
-        }
     }
 
     private int countTrackerPlays(){
