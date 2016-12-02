@@ -48,7 +48,7 @@ public class StatWriter {
         transformer.transform(source, result);
     }
 
-    public void createStatTrackerElement(StatHolder statHolder) throws TransformerException {
+    public void createStatTrackerElement(StatWriterBuilder statWriterBuilder) throws TransformerException {
         Element tracker = document.createElement("tracker");
         statKeeper.appendChild(tracker);
         Attr idAttr = document.createAttribute("id");
@@ -61,11 +61,11 @@ public class StatWriter {
         tracker.setAttributeNode(winsAttr);
         Attr lossesAttr = document.createAttribute("losses");
         tracker.setAttributeNode(lossesAttr);
-        idAttr.setValue(Integer.toString(statHolder.getId()));
-        nameAttr.setValue(statHolder.getName());
-        gameVersionAttr.setValue(statHolder.getGameVersion());
-        winsAttr.setValue(Integer.toString(statHolder.getWins()));
-        lossesAttr.setValue(Integer.toString(statHolder.getLosses()));
+        idAttr.setValue(Integer.toString(statWriterBuilder.getId()));
+        nameAttr.setValue(statWriterBuilder.getName());
+        gameVersionAttr.setValue(statWriterBuilder.getGameVersion());
+        winsAttr.setValue(Integer.toString(statWriterBuilder.getWins()));
+        lossesAttr.setValue(Integer.toString(statWriterBuilder.getLosses()));
     }
 
     public void setDocument(Document document){

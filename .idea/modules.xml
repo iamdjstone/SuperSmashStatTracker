@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SuperSmashStatTracker.iml" filepath="$PROJECT_DIR$/SuperSmashStatTracker.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SuperSmashStatTracker2.iml" filepath="$PROJECT_DIR$/SuperSmashStatTracker2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SuperSmashStatTracker4.iml" filepath="$PROJECT_DIR$/SuperSmashStatTracker4.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

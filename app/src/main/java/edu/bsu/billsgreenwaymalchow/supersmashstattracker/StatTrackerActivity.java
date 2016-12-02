@@ -116,8 +116,8 @@ public class StatTrackerActivity extends AppCompatActivity{
 
     private void updateMostPlayedGameVersion() {
         TextView mostPlayedGameVersionTextView = (TextView) findViewById(R.id.most_played_game_version);
-        MostPlayedGameVersionFinder mostPlayedGameVersionFinder = new MostPlayedGameVersionFinder(statWriter.getDocument());
-        String textViewText = "Most Played Game Version: " + mostPlayedGameVersionFinder.findMostPlayedGameVersion();
+        StatFinder statFinder = new StatFinder(statWriter.getDocument());
+        String textViewText = "Most Played Game Version: " + statFinder.findMostPlayedGameVersion();
         mostPlayedGameVersionTextView.setText(textViewText);
     }
 
@@ -135,14 +135,14 @@ public class StatTrackerActivity extends AppCompatActivity{
 
     private void createElementFromNewStatTracker(Intent data) {
         id++;
-        StatHolder newStatHolder = new StatHolder();
-        newStatHolder.setId(id);
-        newStatHolder.setName(data.getStringExtra("trackerName"));
-        newStatHolder.setGameVersion(data.getStringExtra("gameVersion"));
-        newStatHolder.setWins(0);
-        newStatHolder.setLosses(0);
+        StatWriterBuilder newStatWriterBuilder = new StatWriterBuilder();
+        newStatWriterBuilder.setId(id);
+        newStatWriterBuilder.setName(data.getStringExtra("trackerName"));
+        newStatWriterBuilder.setGameVersion(data.getStringExtra("gameVersion"));
+        newStatWriterBuilder.setWins(0);
+        newStatWriterBuilder.setLosses(0);
         try {
-            statWriter.createStatTrackerElement(newStatHolder);
+            statWriter.createStatTrackerElement(newStatWriterBuilder);
         } catch (TransformerException e) {
             e.printStackTrace();
         }
