@@ -13,8 +13,8 @@ public class StatFinder {
     private int plays;
     private Document document;
     private NodeList nodeList;
-    private int totalWins;
-    private int totalLosses;
+    private int totalWins = 0;
+    private int totalLosses = 0;
     private int totalMatches;
     private double totalWinPercentage;
 
@@ -24,12 +24,10 @@ public class StatFinder {
     }
 
     public String findMostPlayedGameVersion(){
-        calculateTotals();
-        if (nodeList.getLength() == 0 || getTotalMatches() == 0) {
+        checkIfDocumentHasTrackers();
+        initializeHashMapForGameVersions();
+        if (countTrackerPlays()==0){
             mostPlayedGameVersion = "None";
-        } else {
-            initializeHashMapForGameVersions();
-            countTrackerPlays();
         }
         return mostPlayedGameVersion;
     }
@@ -70,7 +68,7 @@ public class StatFinder {
         }
     }
 
-    private void countTrackerPlays(){
+    private int countTrackerPlays(){
         plays = 0;
         for (int itemNumber = 0; itemNumber < nodeList.getLength(); itemNumber++) {
             Element e = (Element) nodeList.item(itemNumber);
@@ -78,6 +76,7 @@ public class StatFinder {
                     Integer.parseInt(e.getAttribute("losses"));
             updateGameVersionHashMap(e, trackerPlays);
         }
+        return plays;
     }
 
     private void updateGameVersionHashMap(Element e, int thisAmountOfTrackerPlays){
