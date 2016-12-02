@@ -20,16 +20,12 @@ public class CreateStatTrackerActivity extends AppCompatActivity implements View
     }
 
     private void createGameVersionButtons(){
-        Button gameVersion64 = (Button) findViewById(R.id.game_version_64);
-        gameVersion64.setOnClickListener(this);
-        Button gameVersionMelee = (Button) findViewById(R.id.game_version_melee);
-        gameVersionMelee.setOnClickListener(this);
-        Button gameVersionBrawl = (Button) findViewById(R.id.game_version_brawl);
-        gameVersionBrawl.setOnClickListener(this);
-        Button gameVersionWiiU = (Button) findViewById(R.id.game_version_wii_u);
-        gameVersionWiiU.setOnClickListener(this);
-        Button gameVersion3DS = (Button) findViewById(R.id.game_version_3ds);
-        gameVersion3DS.setOnClickListener(this);
+        GameVersionList gameVersionList = new GameVersionList();
+        int[] listOfGameVersions = gameVersionList.getGameVersionList();
+        for (int i = 0; i < listOfGameVersions.length; i++){
+            Button thisButton = (Button) findViewById(listOfGameVersions[i]);
+            thisButton.setOnClickListener(this);
+        }
         Button submitButton = (Button) findViewById(R.id.submit_button);
         submitButton.setOnClickListener(this);
     }
