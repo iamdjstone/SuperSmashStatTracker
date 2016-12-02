@@ -13,10 +13,14 @@ public class StatFinder {
     private int plays;
     private Document document;
     private NodeList nodeList;
-
+    private int totalWins;
+    private int totalLosses;
+    private int totalMatches;
+    private double totalWinPercentage;
 
     public StatFinder(Document document){
         this.document = document;
+        nodeList = document.getElementsByTagName("tracker");
     }
 
     public String findMostPlayedGameVersion(){
@@ -24,6 +28,31 @@ public class StatFinder {
         checkIfDocumentHasTrackers();
         countTrackerPlays();
         return mostPlayedGameVersion;
+    }
+
+    public void calculateTotals(){
+        for(int itemNumber = 0; itemNumber < nodeList.getLength(); itemNumber++) {
+            Element e = (Element) nodeList.item(itemNumber);
+            totalWins += Integer.parseInt(e.getAttribute("wins"));
+            totalLosses += Integer.parseInt(e.getAttribute("losses"));
+        }
+        totalMatches = totalWins + totalLosses;
+    }
+
+    public int getTotalWins(){
+        return totalWins;
+    }
+
+    public int getTotalLosses(){
+        return totalLosses;
+    }
+
+    public int getTotalMatches(){
+        return totalWins + totalLosses;
+    }
+
+    public double calculateWinPercentage(){
+        return (double)totalWins / getTotalMatches();
     }
 
     private void initializeHashMapForGameVersions() {
@@ -36,7 +65,6 @@ public class StatFinder {
     }
 
     private void checkIfDocumentHasTrackers() {
-        nodeList = document.getElementsByTagName("tracker");
         if (nodeList.getLength() == 0) {
             mostPlayedGameVersion = "None";
         }

@@ -28,8 +28,9 @@ public class StatFinderTest {
         InputStream inputStream = new FileInputStream("/Users/dakotamalchow/AndroidStudioProjects/SuperSmashStatTracker/app/src/test/assets/TestAsset.xml");
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        statFinder = new StatFinder(document);
         document = documentBuilder.parse(inputStream);
+        statFinder = new StatFinder(document);
+        statFinder.calculateTotals();
     }
 
     @Test
@@ -45,4 +46,17 @@ public class StatFinderTest {
         firstElement.setAttribute("wins", "6000");
         Assert.assertEquals("Multiple", statFinder.findMostPlayedGameVersion());
     }
+
+    @Test
+    public void testFinderCalculatesTotalWins(){
+        int totalWins = statFinder.getTotalWins();
+        Assert.assertEquals(3500, totalWins);
+    }
+
+    @Test
+    public void testFinderCalculatesTotalLosses(){
+        int totalLosses = statFinder.getTotalLosses();
+        Assert.assertEquals(4000, totalLosses);
+    }
+
 }
