@@ -73,4 +73,9 @@ public class StatFinderTest {
         Assert.assertEquals(4000, totalLosses);
     }
 
+    @Test
+    public void testFinderReturnsCorrectNumberOfStatTrackers(){
+        int totalNumberOfTrackers = statFinder.findTotalNumberOfTrackers();
+        Assert.assertEquals(3, totalNumberOfTrackers);
+    }
 }

@@ -35,10 +35,4 @@ public class StatReaderTest {
         Element firstElement = (Element)nodeList.item(0);
         Assert.assertEquals("vs Gestwicki", firstElement.getAttribute("name"));
     }
-
-    @Test
-    public void testDOMReturnsCorrectNumberOfStatTrackers(){
-        int totalNumberOfTrackers = statReader.findTotalNumberOfTrackers();
-        Assert.assertEquals(3, totalNumberOfTrackers);
-    }
 }

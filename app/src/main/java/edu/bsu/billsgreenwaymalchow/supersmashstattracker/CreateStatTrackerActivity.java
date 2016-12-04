@@ -8,64 +8,48 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class CreateStatTrackerActivity extends AppCompatActivity implements View.OnClickListener {
+import java.util.HashMap;
+
+public class CreateStatTrackerActivity extends AppCompatActivity {
 
     private String selectedGameVersion = "";
-    GameVersionList gameVersionList = new GameVersionList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_stat_tracker);
-        createGameVersionButtons();
-        createSubmitButton();
+        ListenForGameVersionButtons();
+        ListenForSubmitButton();
     }
 
-    private void createGameVersionButtons(){
-        int[] listOfGameVersions = gameVersionList.getGameVersionList();
-        for (int gameVersion : listOfGameVersions){
-            Button thisButton = (Button) findViewById(gameVersion);
-            thisButton.setOnClickListener(this);
+    private void ListenForGameVersionButtons(){
+        GameVersionMap gameVersionMap = new GameVersionMap();
+        HashMap<Integer, String> gameVersionHashMap = gameVersionMap.getGameVersionHashMap();
+        for (final HashMap.Entry<Integer, String> entry : gameVersionHashMap.entrySet()){
+            Button thisButton = (Button) findViewById(entry.getKey());
+            thisButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selectedGameVersion = entry.getValue();
+                    showToastMessage(selectedGameVersion);
+                }
+            });
         }
     }
 
-    private void createSubmitButton() {
+    private void ListenForSubmitButton() {
         Button submitButton = (Button) findViewById(R.id.submit_button);
-        submitButton.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v){
-        switch (v.getId()){
-            case R.id.game_version_64:
-                selectedGameVersion = "Nintendo 64";
-                showToastMessage(selectedGameVersion);
-                break;
-            case R.id.game_version_melee:
-                selectedGameVersion = "Melee";
-                showToastMessage(selectedGameVersion);
-                break;
-            case R.id.game_version_brawl:
-                selectedGameVersion = "Brawl";
-                showToastMessage(selectedGameVersion);
-                break;
-            case R.id.game_version_wii_u:
-                selectedGameVersion = "Wii U";
-                showToastMessage(selectedGameVersion);
-                break;
-            case R.id.game_version_3ds:
-                selectedGameVersion = "3DS";
-                showToastMessage(selectedGameVersion);
-                break;
-            case R.id.submit_button:
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent intent = new Intent();
                 final EditText trackerName = (EditText) findViewById(R.id.trackerName);
                 intent.putExtra("trackerName", trackerName.getText().toString());
                 intent.putExtra("gameVersion", selectedGameVersion);
                 setResult(RESULT_OK, intent);
                 finish();
-                break;
-        }
+            }
+        });
     }
 
     private void showToastMessage(String gameVersion){
