@@ -19,13 +19,12 @@ import edu.bsu.billsgreenwaymalchow.supersmashstattracker.StatReader;
 public class StatReaderTest {
 
     private StatReader statReader;
-    private InputStream inputStream;
     private Document document;
 
     @Before
     public void setUp() throws ParserConfigurationException, IOException, SAXException {
 //        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("TestAsset.xml");
-        inputStream = new FileInputStream("/Users/dakotamalchow/AndroidStudioProjects/SuperSmashStatTracker/app/src/test/assets/TestAsset.xml");
+        InputStream inputStream = new FileInputStream("/Users/dakotamalchow/AndroidStudioProjects/SuperSmashStatTracker/app/src/test/assets/TestAsset.xml");
         statReader = new StatReader();
         document = statReader.createDocumentForTest(inputStream);
     }

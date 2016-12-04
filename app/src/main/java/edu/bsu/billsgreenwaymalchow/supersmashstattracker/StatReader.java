@@ -8,9 +8,10 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 
+@SuppressWarnings("WeakerAccess")
 public class StatReader {
 
-    public Document document;
+    private Document document;
 
     public void createDocument(File file){
         try {

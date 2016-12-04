@@ -1,5 +1,6 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
+@SuppressWarnings("WeakerAccess")
 public class GameVersionList {
 
     private int[] gameVersionList =

@@ -17,4 +17,5 @@
     <string name="start">Start</string>
     <string name="save_stats">Save Stats</string>
     <string name="most_played_game_version">"Most Played Game Version: "</string>
+    <string name="zero_percent">0.00%</string>
 </resources>

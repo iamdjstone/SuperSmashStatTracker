@@ -77,7 +77,7 @@ public class WinLossActivity extends AppCompatActivity{
             winPercentage.setText(percentageFormat);
         }
         else{
-            winPercentage.setText("0.00%");
+            winPercentage.setText(R.string.zero_percent);
         }
     }
 }

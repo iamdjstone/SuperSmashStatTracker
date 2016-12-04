@@ -36,6 +36,7 @@ public class StatTrackerActivity extends AppCompatActivity{
     @Override
     protected void onResume(){
         super.onResume();
+        setContentView(R.layout.stat_tracker_list);
         listenForCreateStatTrackerButtonClick();
         try {
             createButtons();

@@ -17,15 +17,19 @@ public class CreateStatTrackerActivity extends AppCompatActivity implements View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_stat_tracker);
         createGameVersionButtons();
+        createSubmitButton();
     }
 
     private void createGameVersionButtons(){
         GameVersionList gameVersionList = new GameVersionList();
         int[] listOfGameVersions = gameVersionList.getGameVersionList();
-        for (int i = 0; i < listOfGameVersions.length; i++){
-            Button thisButton = (Button) findViewById(listOfGameVersions[i]);
+        for (int gameVersion : listOfGameVersions){
+            Button thisButton = (Button) findViewById(gameVersion);
             thisButton.setOnClickListener(this);
         }
+    }
+
+    private void createSubmitButton() {
         Button submitButton = (Button) findViewById(R.id.submit_button);
         submitButton.setOnClickListener(this);
     }
