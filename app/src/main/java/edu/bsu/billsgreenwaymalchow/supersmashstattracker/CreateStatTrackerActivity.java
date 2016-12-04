@@ -11,6 +11,7 @@ import android.widget.Toast;
 public class CreateStatTrackerActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String selectedGameVersion = "";
+    GameVersionList gameVersionList = new GameVersionList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +22,6 @@ public class CreateStatTrackerActivity extends AppCompatActivity implements View
     }
 
     private void createGameVersionButtons(){
-        GameVersionList gameVersionList = new GameVersionList();
         int[] listOfGameVersions = gameVersionList.getGameVersionList();
         for (int gameVersion : listOfGameVersions){
             Button thisButton = (Button) findViewById(gameVersion);

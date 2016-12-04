@@ -1,9 +1,10 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
+
 import java.io.File;
 import java.io.InputStream;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -39,8 +40,4 @@ public class StatReader {
         return document;
     }
 
-    public int findTotalNumberOfTrackers(){
-        NodeList nodeList = document.getElementsByTagName("tracker");
-        return nodeList.getLength();
-    }
 }

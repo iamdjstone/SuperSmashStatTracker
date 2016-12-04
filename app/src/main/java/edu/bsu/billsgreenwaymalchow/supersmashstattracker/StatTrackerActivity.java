@@ -57,25 +57,11 @@ public class StatTrackerActivity extends AppCompatActivity{
         File file = getApplicationContext().getFileStreamPath(FILENAME);
         if(file.exists()){
             statReader.createDocument(file);
-            id = statReader.findTotalNumberOfTrackers();
             statWriter.setDocument(statReader.getDocument());
+            StatFinder statFinder = new StatFinder(statReader.getDocument());
+            id = statFinder.findTotalNumberOfTrackers();
         } else {
             statWriter.createMainElement();
-        }
-    }
-
-    private void attemptToCreateNewSaveXML() {
-        String FILENAME = "statData.xml";
-        File file = getApplicationContext().getFileStreamPath(FILENAME);
-        try {
-            statWriter.writeToFile(file);
-            Scanner input = new Scanner(file);
-            while (input.hasNextLine()) {
-                System.out.println(input.nextLine());
-            }
-        }
-        catch(Exception e){
-            e.printStackTrace();
         }
     }
 
@@ -127,6 +113,21 @@ public class StatTrackerActivity extends AppCompatActivity{
         String totalLossesText = "Total Losses: " + statFinder.getTotalLosses();
         totalWins.setText(totalWinsText);
         totalLosses.setText(totalLossesText);
+    }
+
+    private void attemptToCreateNewSaveXML() {
+        String FILENAME = "statData.xml";
+        File file = getApplicationContext().getFileStreamPath(FILENAME);
+        try {
+            statWriter.writeToFile(file);
+            Scanner input = new Scanner(file);
+            while (input.hasNextLine()) {
+                System.out.println(input.nextLine());
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override

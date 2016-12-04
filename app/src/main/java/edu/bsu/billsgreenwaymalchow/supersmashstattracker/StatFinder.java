@@ -6,6 +6,7 @@ import org.w3c.dom.NodeList;
 
 import java.util.HashMap;
 
+@SuppressWarnings("WeakerAccess")
 public class StatFinder {
 
     private String mostPlayedGameVersion = "";
@@ -25,22 +26,6 @@ public class StatFinder {
             mostPlayedGameVersion = "None";
         }
         return mostPlayedGameVersion;
-    }
-
-    public void calculateTotals(){
-        for(int itemNumber = 0; itemNumber < nodeList.getLength(); itemNumber++) {
-            Element e = (Element) nodeList.item(itemNumber);
-            totalWins += Integer.parseInt(e.getAttribute("wins"));
-            totalLosses += Integer.parseInt(e.getAttribute("losses"));
-        }
-    }
-
-    public int getTotalWins(){
-        return totalWins;
-    }
-
-    public int getTotalLosses(){
-        return totalLosses;
     }
 
     private void initializeHashMapForGameVersions() {
@@ -76,5 +61,25 @@ public class StatFinder {
                 }
             }
         }
+    }
+
+    public void calculateTotals(){
+        for(int itemNumber = 0; itemNumber < nodeList.getLength(); itemNumber++) {
+            Element e = (Element) nodeList.item(itemNumber);
+            totalWins += Integer.parseInt(e.getAttribute("wins"));
+            totalLosses += Integer.parseInt(e.getAttribute("losses"));
+        }
+    }
+
+    public int getTotalWins(){
+        return totalWins;
+    }
+
+    public int getTotalLosses(){
+        return totalLosses;
+    }
+
+    public int findTotalNumberOfTrackers(){
+        return nodeList.getLength();
     }
 }

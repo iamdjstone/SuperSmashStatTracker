@@ -28,6 +28,7 @@ public class WinLossActivity extends AppCompatActivity{
         winLossCounter.setWins(wins);
         winLossCounter.setLosses(losses);
         addWinOrLoss();
+        listenForSaveButtonClick();
     }
 
     private void addWinOrLoss(){
@@ -56,6 +57,9 @@ public class WinLossActivity extends AppCompatActivity{
                 updatePercentage();
             }
         });
+    }
+
+    private void listenForSaveButtonClick(){
         Button saveStatsButton = (Button) findViewById(R.id.saveStatsButton);
         saveStatsButton.setOnClickListener(new View.OnClickListener() {
             @Override
