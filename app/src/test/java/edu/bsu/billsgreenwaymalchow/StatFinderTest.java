@@ -25,7 +25,7 @@ public class StatFinderTest {
 
     @Before
     public void setUp() throws ParserConfigurationException, IOException, SAXException {
-        InputStream inputStream = new FileInputStream("/Users/dakotamalchow/AndroidStudioProjects/SuperSmashStatTracker/app/src/test/assets/TestAsset.xml");
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("TestAsset.xml");
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
         document = documentBuilder.parse(inputStream);

@@ -3,7 +3,6 @@ package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 import org.w3c.dom.Document;
 
 import java.io.File;
-import java.io.InputStream;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -21,18 +20,6 @@ public class StatReader {
             document = documentBuilder.parse(file);
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-
-    public Document createDocumentForTest(InputStream inputStream){
-        try {
-            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            document = documentBuilder.parse(inputStream);
-            return document;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return document;
         }
     }
 
