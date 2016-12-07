@@ -58,8 +58,8 @@ public class StatTrackerActivity extends AppCompatActivity{
         if(file.exists()){
             statReader.createDocument(file);
             statWriter.setDocument(statReader.getDocument());
-            StatFinder statFinder = new StatFinder(statReader.getDocument());
-            id = statFinder.findTotalNumberOfTrackers();
+            TotalStatFinder totalStatFinder = new TotalStatFinder(statReader.getDocument());
+            id = totalStatFinder.findTotalNumberOfTrackers();
         } else {
             statWriter.createMainElement();
         }
@@ -103,14 +103,14 @@ public class StatTrackerActivity extends AppCompatActivity{
 
     private void updateMostPlayedGameVersion() {
         TextView mostPlayedGameVersionTextView = (TextView) findViewById(R.id.most_played_game_version);
-        StatFinder statFinder = new StatFinder(statWriter.getDocument());
-        statFinder.calculateTotals();
-        String gameVersionText = "Most Played Game Version: " + statFinder.findMostPlayedGameVersion();
+        TotalStatFinder totalStatFinder = new TotalStatFinder(statWriter.getDocument());
+        totalStatFinder.calculateStats();
+        String gameVersionText = "Most Played Game Version: " + totalStatFinder.getMostPlayedGameVersion();
         mostPlayedGameVersionTextView.setText(gameVersionText);
         TextView totalWins = (TextView) findViewById(R.id.totalWins);
         TextView totalLosses = (TextView) findViewById(R.id.totalLosses);
-        String totalWinsText = "Total Wins: " + statFinder.getTotalWins();
-        String totalLossesText = "Total Losses: " + statFinder.getTotalLosses();
+        String totalWinsText = "Total Wins: " + totalStatFinder.getTotalWins();
+        String totalLossesText = "Total Losses: " + totalStatFinder.getTotalLosses();
         totalWins.setText(totalWinsText);
         totalLosses.setText(totalLossesText);
     }

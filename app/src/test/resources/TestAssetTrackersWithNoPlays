@@ -1,0 +1,6 @@
+<!--suppress CheckTagEmptyBody -->
+<statKeeper>
+    <tracker id="1" name="vs Gestwicki" gameVersion="Melee" wins="0" losses="0"></tracker>
+    <tracker id="2" name="vs Gunner" gameVersion="Brawl" wins="0" losses="0"></tracker>
+    <tracker id="3" name="vs Dakota" gameVersion="Brawl" wins="0" losses="0"></tracker>
+</statKeeper>

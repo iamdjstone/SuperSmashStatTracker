@@ -7,7 +7,7 @@ import org.w3c.dom.NodeList;
 import java.util.HashMap;
 
 @SuppressWarnings("WeakerAccess")
-public class StatFinder {
+public class TotalStatFinder {
 
     private String mostPlayedGameVersion = "";
     private HashMap<String, Integer> gameVersionPlays;
@@ -16,16 +16,16 @@ public class StatFinder {
     private int totalWins = 0;
     private int totalLosses = 0;
 
-    public StatFinder(Document document){
+    public TotalStatFinder(Document document){
         nodeList = document.getElementsByTagName("tracker");
     }
 
-    public String findMostPlayedGameVersion(){
+    public void calculateStats(){
         initializeHashMapForGameVersions();
-        if (countTrackerPlays()==0){
+        calculateTotalTrackerStats();
+        if (totalWins+totalLosses==0){
             mostPlayedGameVersion = "None";
         }
-        return mostPlayedGameVersion;
     }
 
     private void initializeHashMapForGameVersions() {
@@ -37,15 +37,15 @@ public class StatFinder {
         gameVersionPlays.put("3DS", 0);
     }
 
-    private int countTrackerPlays(){
-        plays = 0;
+    private void calculateTotalTrackerStats(){
         for (int itemNumber = 0; itemNumber < nodeList.getLength(); itemNumber++) {
             Element e = (Element) nodeList.item(itemNumber);
-            int trackerPlays = Integer.parseInt(e.getAttribute("wins")) +
-                    Integer.parseInt(e.getAttribute("losses"));
-            updateGameVersionHashMap(e, trackerPlays);
+            int win = Integer.parseInt(e.getAttribute("wins"));
+            int loss = Integer.parseInt(e.getAttribute("losses"));
+            totalWins += win;
+            totalLosses += loss;
+            updateGameVersionHashMap(e, win + loss);
         }
-        return plays;
     }
 
     private void updateGameVersionHashMap(Element e, int thisAmountOfTrackerPlays){
@@ -63,20 +63,16 @@ public class StatFinder {
         }
     }
 
-    public void calculateTotals(){
-        for(int itemNumber = 0; itemNumber < nodeList.getLength(); itemNumber++) {
-            Element e = (Element) nodeList.item(itemNumber);
-            totalWins += Integer.parseInt(e.getAttribute("wins"));
-            totalLosses += Integer.parseInt(e.getAttribute("losses"));
-        }
-    }
-
     public int getTotalWins(){
         return totalWins;
     }
 
     public int getTotalLosses(){
         return totalLosses;
+    }
+
+    public String getMostPlayedGameVersion(){
+        return mostPlayedGameVersion;
     }
 
     public int findTotalNumberOfTrackers(){
