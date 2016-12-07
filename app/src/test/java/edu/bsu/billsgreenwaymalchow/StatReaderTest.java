@@ -15,11 +15,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import edu.bsu.billsgreenwaymalchow.supersmashstattracker.StatReader;
-
 public class StatReaderTest {
 
-    private StatReader statReader;
     private Document document;
 
     @Before
@@ -28,7 +25,6 @@ public class StatReaderTest {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
         document = documentBuilder.parse(inputStream);
-        statReader = new StatReader();
     }
 
     @Test
