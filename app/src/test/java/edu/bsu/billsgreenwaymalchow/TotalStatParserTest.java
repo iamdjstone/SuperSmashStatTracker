@@ -12,68 +12,68 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import edu.bsu.billsgreenwaymalchow.supersmashstattracker.TotalStatFinder;
+import edu.bsu.billsgreenwaymalchow.supersmashstattracker.TotalStatParser;
 
-public class TotalStatFinderTest {
+public class TotalStatParserTest {
 
-    private TotalStatFinder totalStatFinder;
+    private TotalStatParser totalStatParser;
 
     public void setUp(String resourceName) throws ParserConfigurationException, IOException, SAXException {
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(resourceName);
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
         Document document = documentBuilder.parse(inputStream);
-        totalStatFinder = new TotalStatFinder(document);
+        totalStatParser = new TotalStatParser(document);
     }
 
     @Test
     public void testStatFinderFindsMostPlayedGameVersion() throws IOException, SAXException, ParserConfigurationException {
         setUp("TestAsset.xml");
-        totalStatFinder.calculateStats();
-        Assert.assertEquals("Brawl", totalStatFinder.getMostPlayedGameVersion());
+        totalStatParser.getTotalStatTrackerReport();
+        Assert.assertEquals("Brawl", totalStatParser.getMostPlayedGameVersion());
     }
 
     @Test
     public void testWriterFindsNoMostPlayedGameVersion() throws IOException, SAXException, ParserConfigurationException {
         setUp("TestAssetTrackersWithNoPlays");
-        totalStatFinder.calculateStats();
-        Assert.assertEquals("None", totalStatFinder.getMostPlayedGameVersion());
+        totalStatParser.getTotalStatTrackerReport();
+        Assert.assertEquals("None", totalStatParser.getMostPlayedGameVersion());
     }
 
     @Test
     public void testWriterFindsTieForMostPlayedGameVersion() throws IOException, SAXException, ParserConfigurationException {
         setUp("TestAssetTiedTrackers");
-        totalStatFinder.calculateStats();
-        Assert.assertEquals("Multiple", totalStatFinder.getMostPlayedGameVersion());
+        totalStatParser.getTotalStatTrackerReport();
+        Assert.assertEquals("Multiple", totalStatParser.getMostPlayedGameVersion());
     }
 
     @Test
     public void testWriterFindsNoneForNone() throws IOException, SAXException, ParserConfigurationException {
         setUp("TestAssetNoTrackers");
-        totalStatFinder.calculateStats();
-        Assert.assertEquals("None", totalStatFinder.getMostPlayedGameVersion());
+        totalStatParser.getTotalStatTrackerReport();
+        Assert.assertEquals("None", totalStatParser.getMostPlayedGameVersion());
     }
 
     @Test
     public void testFinderCalculatesTotalWins() throws IOException, SAXException, ParserConfigurationException {
         setUp("TestAsset.xml");
-        totalStatFinder.calculateStats();
-        int totalWins = totalStatFinder.getTotalWins();
+        totalStatParser.getTotalStatTrackerReport();
+        int totalWins = totalStatParser.getTotalWins();
         Assert.assertEquals(3500, totalWins);
     }
 
     @Test
     public void testFinderCalculatesTotalLosses() throws IOException, SAXException, ParserConfigurationException {
         setUp("TestAsset.xml");
-        totalStatFinder.calculateStats();
-        int totalLosses = totalStatFinder.getTotalLosses();
+        totalStatParser.getTotalStatTrackerReport();
+        int totalLosses = totalStatParser.getTotalLosses();
         Assert.assertEquals(4000, totalLosses);
     }
 
     @Test
     public void testFinderReturnsCorrectNumberOfStatTrackers() throws IOException, SAXException, ParserConfigurationException {
         setUp("TestAsset.xml");
-        int totalNumberOfTrackers = totalStatFinder.findTotalNumberOfTrackers();
+        int totalNumberOfTrackers = totalStatParser.findTotalNumberOfTrackers();
         Assert.assertEquals(3, totalNumberOfTrackers);
     }
 }

@@ -43,7 +43,7 @@ public class StatTrackerActivity extends AppCompatActivity{
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
-        updateMostPlayedGameVersion();
+        updateTotalStatistics();
     }
 
     @Override
@@ -58,8 +58,8 @@ public class StatTrackerActivity extends AppCompatActivity{
         if(file.exists()){
             statReader.createDocument(file);
             statWriter.setDocument(statReader.getDocument());
-            TotalStatFinder totalStatFinder = new TotalStatFinder(statReader.getDocument());
-            id = totalStatFinder.findTotalNumberOfTrackers();
+            TotalStatParser totalStatParser = new TotalStatParser(statReader.getDocument());
+            id = totalStatParser.findTotalNumberOfTrackers();
         } else {
             statWriter.createMainElement();
         }
@@ -101,16 +101,16 @@ public class StatTrackerActivity extends AppCompatActivity{
         }
     }
 
-    private void updateMostPlayedGameVersion() {
+    private void updateTotalStatistics() {
+        TotalStatParser totalStatParser = new TotalStatParser(statWriter.getDocument());
+        TotalStatTrackerReport mostRecentStatTrackerReport = (totalStatParser.createTotalStatTrackerReport());
+        String gameVersionText = "Most Played Game Version: " + mostRecentStatTrackerReport.getMostPlayedGameVersion();
+        String totalWinsText = "Total Wins: " + mostRecentStatTrackerReport.getTotalWins();
+        String totalLossesText = "Total Losses: " + mostRecentStatTrackerReport.getTotalLosses();
         TextView mostPlayedGameVersionTextView = (TextView) findViewById(R.id.most_played_game_version);
-        TotalStatFinder totalStatFinder = new TotalStatFinder(statWriter.getDocument());
-        totalStatFinder.calculateStats();
-        String gameVersionText = "Most Played Game Version: " + totalStatFinder.getMostPlayedGameVersion();
-        mostPlayedGameVersionTextView.setText(gameVersionText);
         TextView totalWins = (TextView) findViewById(R.id.totalWins);
         TextView totalLosses = (TextView) findViewById(R.id.totalLosses);
-        String totalWinsText = "Total Wins: " + totalStatFinder.getTotalWins();
-        String totalLossesText = "Total Losses: " + totalStatFinder.getTotalLosses();
+        mostPlayedGameVersionTextView.setText(gameVersionText);
         totalWins.setText(totalWinsText);
         totalLosses.setText(totalLossesText);
     }
