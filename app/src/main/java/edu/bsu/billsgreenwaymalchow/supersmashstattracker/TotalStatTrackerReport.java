@@ -8,7 +8,6 @@ public class TotalStatTrackerReport {
     private String mostPlayedGameVersion = "None";
     private int mostGameVersionPlays;
     private HashMap<String, Integer> gameVersionPlays;
-    private int totalStatTrackers;
 
     public TotalStatTrackerReport(){
         gameVersionPlays = new HashMap<>();
@@ -54,7 +53,4 @@ public class TotalStatTrackerReport {
         return mostPlayedGameVersion;
     }
 
-    public void setTotalStatTrackers(int totalNumberOfStatTrackers) {
-        totalStatTrackers = totalNumberOfStatTrackers;
-    }
 }
