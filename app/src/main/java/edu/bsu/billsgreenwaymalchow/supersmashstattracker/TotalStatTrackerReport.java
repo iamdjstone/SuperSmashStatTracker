@@ -1,19 +1,14 @@
 package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
-import org.w3c.dom.Element;
-
 import java.util.HashMap;
-
-/**
- * Created by Danny on 12/7/2016.
- */
 
 public class TotalStatTrackerReport {
     private int totalWins;
     private int totalLosses;
-    private String mostPlayedGameVersion;
+    private String mostPlayedGameVersion = "None";
     private int mostGameVersionPlays;
     private HashMap<String, Integer> gameVersionPlays;
+    private int totalStatTrackers;
 
     public TotalStatTrackerReport(){
         gameVersionPlays = new HashMap<>();
@@ -32,16 +27,6 @@ public class TotalStatTrackerReport {
         totalLosses += currentStatTrackerLosses;
     }
 
-    public int getTotalWins(){
-        return totalWins;
-    }
-    public int getTotalLosses(){
-        return totalLosses;
-    }
-    public String getMostPlayedGameVersion(){
-        return mostPlayedGameVersion;
-    }
-
     public void updateGameVersionHashMap(String currentGameVersionType, int thisAmountOfTrackerPlays){
         for (HashMap.Entry<String, Integer> entry : gameVersionPlays.entrySet()) {
             if (entry.getKey().equals(currentGameVersionType)){
@@ -55,6 +40,21 @@ public class TotalStatTrackerReport {
                 }
             }
         }
+        if (totalLosses + totalWins == 0){
+            mostPlayedGameVersion = "None";
+        }
+    }
+    public int getTotalWins(){
+        return totalWins;
+    }
+    public int getTotalLosses(){
+        return totalLosses;
+    }
+    public String getMostPlayedGameVersion(){
+        return mostPlayedGameVersion;
     }
 
+    public void setTotalStatTrackers(int totalNumberOfStatTrackers) {
+        totalStatTrackers = totalNumberOfStatTrackers;
+    }
 }

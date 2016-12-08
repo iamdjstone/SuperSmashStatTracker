@@ -9,13 +9,11 @@ import java.util.HashMap;
 @SuppressWarnings("WeakerAccess")
 public class TotalStatParser {
 
-    private String mostPlayedGameVersion = "";
     private NodeList nodeList;
 
     public TotalStatParser(Document document){
         nodeList = document.getElementsByTagName("tracker");
     }
-
     public TotalStatTrackerReport createTotalStatTrackerReport(){
         TotalStatTrackerReport totalStatTrackerReport = new TotalStatTrackerReport();
         for (int itemNumber = 0; itemNumber < nodeList.getLength(); itemNumber++) {
@@ -25,6 +23,11 @@ public class TotalStatParser {
             totalStatTrackerReport.updateGameVersionHashMap(e.getAttribute("gameVersion"),
                     Integer.parseInt(e.getAttribute("wins")));
         }
+        totalStatTrackerReport.setTotalStatTrackers(getLengthOfDocumentParsed());
         return totalStatTrackerReport;
+    }
+
+    public int getLengthOfDocumentParsed(){
+        return nodeList.getLength();
     }
 }

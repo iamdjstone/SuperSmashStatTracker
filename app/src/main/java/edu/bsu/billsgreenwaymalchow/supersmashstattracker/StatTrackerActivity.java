@@ -22,6 +22,7 @@ public class StatTrackerActivity extends AppCompatActivity{
 
     private StatWriter statWriter = new StatWriter();
     private StatReader statReader = new StatReader();
+    TotalStatParser totalStatParser = new TotalStatParser(statReader.getDocument());
     private int id = 0;
     static final private int NAME_GAMEVERSION = 1;
     static final private int WIN_LOSS = 2;
@@ -58,13 +59,11 @@ public class StatTrackerActivity extends AppCompatActivity{
         if(file.exists()){
             statReader.createDocument(file);
             statWriter.setDocument(statReader.getDocument());
-            TotalStatParser totalStatParser = new TotalStatParser(statReader.getDocument());
-            id = totalStatParser.findTotalNumberOfTrackers();
+            id = totalStatParser.getLengthOfDocumentParsed();
         } else {
             statWriter.createMainElement();
         }
     }
-
     private void listenForCreateStatTrackerButtonClick() {
         Button createStatTrackerButton = (Button) findViewById(R.id.create_stat_tracker_button);
         createStatTrackerButton.setOnClickListener(new View.OnClickListener() {

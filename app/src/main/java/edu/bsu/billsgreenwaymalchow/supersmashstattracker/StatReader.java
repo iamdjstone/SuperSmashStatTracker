@@ -22,7 +22,6 @@ public class StatReader {
             e.printStackTrace();
         }
     }
-
     public Document getDocument(){
         return document;
     }
