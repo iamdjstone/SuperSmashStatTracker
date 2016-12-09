@@ -21,9 +21,8 @@ public class TotalStatParser {
             totalStatTrackerReport.addToTotalWins(Integer.parseInt(e.getAttribute("wins")));
             totalStatTrackerReport.addToTotalLosses(Integer.parseInt(e.getAttribute("losses")));
             totalStatTrackerReport.updateGameVersionHashMap(e.getAttribute("gameVersion"),
-                    Integer.parseInt(e.getAttribute("wins")));
+                    Integer.parseInt(e.getAttribute("wins")) + Integer.parseInt(e.getAttribute("losses")));
         }
-        totalStatTrackerReport.setTotalStatTrackers(getLengthOfDocumentParsed());
         return totalStatTrackerReport;
     }
 

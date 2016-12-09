@@ -31,14 +31,6 @@ public class TotalStatParserTest {
     }
 
     @Test
-    public void testReadFirstElement() throws IOException, SAXException, ParserConfigurationException {
-        setUp("TestAsset.xml");
-        NodeList children = document.getChildNodes();
-        Element rssElement = (Element)children.item(0);
-        Assert.assertEquals("statKeeper", rssElement.getNodeName());
-    }
-
-    @Test
     public void testReadFirstAttributeCorrectly() throws IOException, SAXException, ParserConfigurationException {
         setUp("TestAsset.xml");
         NodeList statTrackerAttributes = document.getElementsByTagName("tracker");

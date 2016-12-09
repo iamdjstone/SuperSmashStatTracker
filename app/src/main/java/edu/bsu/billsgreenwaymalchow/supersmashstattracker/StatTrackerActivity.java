@@ -22,7 +22,7 @@ public class StatTrackerActivity extends AppCompatActivity{
 
     private StatWriter statWriter = new StatWriter();
     private StatReader statReader = new StatReader();
-    TotalStatParser totalStatParser = new TotalStatParser(statReader.getDocument());
+    TotalStatParser totalStatParser;
     private int id = 0;
     static final private int NAME_GAMEVERSION = 1;
     static final private int WIN_LOSS = 2;
@@ -44,7 +44,7 @@ public class StatTrackerActivity extends AppCompatActivity{
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
-        updateTotalStatistics();
+        updateTotalStatisticsOnActivity();
     }
 
     @Override
@@ -59,6 +59,7 @@ public class StatTrackerActivity extends AppCompatActivity{
         if(file.exists()){
             statReader.createDocument(file);
             statWriter.setDocument(statReader.getDocument());
+            totalStatParser = new TotalStatParser(statReader.getDocument());
             id = totalStatParser.getLengthOfDocumentParsed();
         } else {
             statWriter.createMainElement();
@@ -100,8 +101,8 @@ public class StatTrackerActivity extends AppCompatActivity{
         }
     }
 
-    private void updateTotalStatistics() {
-        TotalStatParser totalStatParser = new TotalStatParser(statWriter.getDocument());
+    private void updateTotalStatisticsOnActivity() {
+        totalStatParser = new TotalStatParser(statWriter.getDocument());
         TotalStatTrackerReport mostRecentStatTrackerReport = (totalStatParser.createTotalStatTrackerReport());
         String gameVersionText = "Most Played Game Version: " + mostRecentStatTrackerReport.getMostPlayedGameVersion();
         String totalWinsText = "Total Wins: " + mostRecentStatTrackerReport.getTotalWins();
