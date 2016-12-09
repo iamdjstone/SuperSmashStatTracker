@@ -79,9 +79,9 @@
         android:text="@string/game_version_none"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:id="@+id/current_game_version"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/win_percentage_text_view"
-        android:layout_marginTop="12dp"
-        android:id="@+id/current_game_version" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
