@@ -2,6 +2,8 @@ package edu.bsu.billsgreenwaymalchow.supersmashstattracker;
 
 import java.util.HashMap;
 
+
+@SuppressWarnings("WeakerAccess")
 public class TotalStatTrackerReport {
     private int totalWins;
     private int totalLosses;

@@ -13,7 +13,7 @@
 
 
     <TextView
-        android:text="TextView"
+        android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/total_wins_text_view"
@@ -24,7 +24,7 @@
         android:textSize="18sp" />
 
     <TextView
-        android:text="TextView"
+        android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/win_percentage_text_view"
@@ -34,7 +34,7 @@
         android:textSize="18sp" />
 
     <TextView
-        android:text="TextView"
+        android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/total_losses_text_view"
@@ -76,7 +76,7 @@
         android:textColor="@color/whiteText"/>
 
     <TextView
-        android:text="Game Version: None"
+        android:text="@string/game_version_none"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

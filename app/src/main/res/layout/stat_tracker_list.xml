@@ -51,7 +51,7 @@
     </LinearLayout>
 
     <TextView
-        android:text="Most Played Game Version: No Games "
+        android:text="@string/most_played_game_version_no_games"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
@@ -60,7 +60,7 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="Total Wins: 0"
+        android:text="@string/total_wins_0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/most_played_game_version"
@@ -69,7 +69,7 @@
         android:id="@+id/totalWins" />
 
     <TextView
-        android:text="Total Losses: 0"
+        android:text="@string/total_losses_0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/totalWins"
