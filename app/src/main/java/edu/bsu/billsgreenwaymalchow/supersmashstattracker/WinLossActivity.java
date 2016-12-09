@@ -25,10 +25,20 @@ public class WinLossActivity extends AppCompatActivity{
         id = intent.getIntExtra("id", 0);
         wins = intent.getIntExtra("wins", 0);
         losses = intent.getIntExtra("losses", 0);
+        setGameVersionText(intent.getStringExtra("gameVersion"));
         winLossCounter.setWins(wins);
         winLossCounter.setLosses(losses);
         addWinOrLoss();
         listenForSaveButtonClick();
+    }
+
+    private void setGameVersionText(String gameVersion){
+        if(gameVersion.equals("")){
+            gameVersion = "None";
+        }
+        String gameVersionText = "Game Version: " + gameVersion;
+        TextView gameVersionTextView = (TextView) findViewById(R.id.current_game_version);
+        gameVersionTextView.setText(gameVersionText);
     }
 
     private void addWinOrLoss(){

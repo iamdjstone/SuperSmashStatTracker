@@ -82,6 +82,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/win_percentage_text_view"
         android:layout_marginTop="12dp"
-        android:id="@+id/textView2" />
+        android:id="@+id/current_game_version" />
 
 </RelativeLayout>

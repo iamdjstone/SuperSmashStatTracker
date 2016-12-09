@@ -85,6 +85,7 @@ public class StatTrackerActivity extends AppCompatActivity{
             final int id = Integer.parseInt(e.getAttribute("id"));
             final int wins = Integer.parseInt(e.getAttribute("wins"));
             final int losses = Integer.parseInt(e.getAttribute("losses"));
+            final String gameVersion = e.getAttribute("gameVersion");
             Button thisStatTrackerButton = new Button(this);
             thisStatTrackerButton.setText(e.getAttribute("name"));
             statTrackerScrollList.addView(thisStatTrackerButton, lp);
@@ -95,6 +96,7 @@ public class StatTrackerActivity extends AppCompatActivity{
                     i.putExtra("id", id);
                     i.putExtra("wins", wins);
                     i.putExtra("losses", losses);
+                    i.putExtra("gameVersion", gameVersion);
                     startActivityForResult(i, WIN_LOSS);
                 }
             });
