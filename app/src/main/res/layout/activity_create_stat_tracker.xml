@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/backgroundColor"
     tools:context="edu.bsu.billsgreenwaymalchow.supersmashstattracker.CreateStatTrackerActivity">
 
     <TextView
@@ -32,7 +33,9 @@
         android:id="@+id/submit_button"
         android:layout_alignParentBottom="true"
         android:layout_alignEnd="@+id/trackerName"
-        android:layout_marginBottom="22dp" />
+        android:layout_marginBottom="22dp"
+        android:background="@color/submit"
+        android:textColor="@color/whiteText"/>
 
     <Button
         android:text="@string/brawl"
@@ -42,7 +45,10 @@
         android:layout_above="@+id/submit_button"
         android:layout_toStartOf="@+id/submit_button"
         android:layout_marginEnd="18dp"
-        android:layout_marginBottom="61dp" />
+        android:layout_marginBottom="61dp"
+        android:background="@color/brawl"
+        android:textColor="@color/whiteText"
+        />
 
     <Button
         android:text="@string/melee"
@@ -51,15 +57,11 @@
         android:id="@+id/game_version_melee"
         android:layout_above="@+id/game_version_brawl"
         android:layout_alignStart="@+id/game_version_brawl"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        android:background="@color/melee"
+        android:textColor="@color/whiteText"
+        />
 
-    <Button
-        android:text="@string/nintendo_64"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/game_version_64"
-        android:layout_above="@+id/game_version_melee"
-        android:layout_toEndOf="@+id/game_version_melee" />
 
     <Button
         android:text="@string/_3ds"
@@ -68,14 +70,31 @@
         android:id="@+id/game_version_3ds"
         android:layout_alignBaseline="@+id/game_version_brawl"
         android:layout_alignBottom="@+id/game_version_brawl"
-        android:layout_alignStart="@+id/game_version_wii_u" />
+        android:layout_alignStart="@+id/game_version_wii_u"
+        android:background="@color/threeDS"
+        android:textColor="@color/whiteText"/>
 
     <Button
         android:text="@string/wii_u"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/game_version_wii_u"
-        android:layout_below="@+id/game_version_64"
-        android:layout_toEndOf="@+id/submit_button" />
+        android:background="@color/wiiU"
+        android:textColor="@color/whiteText"
+        android:layout_alignBaseline="@+id/game_version_melee"
+        android:layout_alignBottom="@+id/game_version_melee"
+        android:layout_toEndOf="@+id/submit_button"
+        android:layout_marginStart="11dp" />
+
+    <Button
+        android:text="@string/nintendo_64"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/game_version_64"
+        android:background="@color/nintendo64"
+        android:textColor="@color/whiteText"
+        android:layout_marginBottom="13dp"
+        android:layout_above="@+id/game_version_wii_u"
+        android:layout_alignEnd="@+id/trackerName" />
 
 </RelativeLayout>

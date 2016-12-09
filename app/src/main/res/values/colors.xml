@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#8877DD</color>
+    <color name="colorPrimaryDark">#5544AA</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="backgroundColor">#FFEEFF</color>
+    <color name="nintendo64">#000000</color>
+    <color name="melee">#FFA500</color>
+    <color name="brawl">#551a8b</color>
+    <color name="wiiU">#0077FF</color>
+    <color name="threeDS">#DD0000</color>
+    <color name="submit">#32AA32</color>
+    <color name="win">#0000FF</color>
+    <color name="loss">#FF0000</color>
+    <color name="whiteText">#FFFFFF</color>
 </resources>

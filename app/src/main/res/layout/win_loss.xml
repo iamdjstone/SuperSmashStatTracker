@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/backgroundColor"
     tools:context="edu.bsu.billsgreenwaymalchow.supersmashstattracker.MainActivity">
 
 
@@ -49,7 +50,9 @@
         android:id="@+id/add_win_button"
         android:layout_marginBottom="47dp"
         android:layout_above="@+id/saveStatsButton"
-        android:layout_toStartOf="@+id/saveStatsButton" />
+        android:layout_toStartOf="@+id/saveStatsButton"
+        android:background="@color/win"
+        android:textColor="@color/whiteText"/>
 
     <Button
         android:text="@string/add_loss"
@@ -58,7 +61,9 @@
         android:id="@+id/addLossButton"
         android:layout_alignBaseline="@+id/add_win_button"
         android:layout_alignBottom="@+id/add_win_button"
-        android:layout_toEndOf="@+id/saveStatsButton" />
+        android:layout_toEndOf="@+id/saveStatsButton"
+        android:background="@color/loss"
+        android:textColor="@color/whiteText"/>
 
     <Button
         android:text="@string/save_stats"
@@ -66,6 +71,17 @@
         android:layout_height="wrap_content"
         android:id="@+id/saveStatsButton"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@color/submit"
+        android:textColor="@color/whiteText"/>
+
+    <TextView
+        android:text="Game Version: None"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/win_percentage_text_view"
+        android:layout_marginTop="12dp"
+        android:id="@+id/textView2" />
 
 </RelativeLayout>
