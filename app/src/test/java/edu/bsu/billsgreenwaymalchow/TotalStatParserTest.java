@@ -39,42 +39,42 @@ public class TotalStatParserTest {
     }
 
     @Test
-    public void testStatFinderFindsMostPlayedGameVersion() throws IOException, SAXException, ParserConfigurationException {
+    public void testStatParserReturnsMostPlayedGameVersion() throws IOException, SAXException, ParserConfigurationException {
         setUp("TestAsset.xml");
         TotalStatTrackerReport totalStatTrackerReport = totalStatParser.createTotalStatTrackerReport();
         Assert.assertEquals("Brawl", totalStatTrackerReport.getMostPlayedGameVersion());
     }
 
     @Test
-    public void testWriterFindsNoMostPlayedGameVersion() throws IOException, SAXException, ParserConfigurationException {
+    public void testStatParserReturnsNoMostPlayedGameVersion() throws IOException, SAXException, ParserConfigurationException {
         setUp("TestAssetTrackersWithNoPlays.xml");
         TotalStatTrackerReport totalStatTrackerReport = totalStatParser.createTotalStatTrackerReport();
         Assert.assertEquals("None", totalStatTrackerReport.getMostPlayedGameVersion());
     }
 
     @Test
-    public void testWriterFindsTieForMostPlayedGameVersion() throws IOException, SAXException, ParserConfigurationException {
+    public void testStatParserReturnsTieForMostPlayedGameVersion() throws IOException, SAXException, ParserConfigurationException {
         setUp("TestAssetTiedTrackers.xml");
         TotalStatTrackerReport totalStatTrackerReport = totalStatParser.createTotalStatTrackerReport();
         Assert.assertEquals("Multiple", totalStatTrackerReport.getMostPlayedGameVersion());
     }
 
     @Test
-    public void testWriterFindsNoneForNoGamesPlayed() throws IOException, SAXException, ParserConfigurationException {
+    public void testStatParserReturnsNoneForNoGamesPlayed() throws IOException, SAXException, ParserConfigurationException {
         setUp("TestAssetNoTrackers.xml");
         TotalStatTrackerReport totalStatTrackerReport = totalStatParser.createTotalStatTrackerReport();
         Assert.assertEquals("None", totalStatTrackerReport.getMostPlayedGameVersion());
     }
 
     @Test
-    public void testFinderCalculatesTotalWins() throws IOException, SAXException, ParserConfigurationException {
+    public void testStatParserReturnsTotalWins() throws IOException, SAXException, ParserConfigurationException {
         setUp("TestAsset.xml");
         TotalStatTrackerReport totalStatTrackerReport = totalStatParser.createTotalStatTrackerReport();
         int totalWins = totalStatTrackerReport.getTotalWins();
         Assert.assertEquals(3500, totalWins);
     }
     @Test
-    public void testFinderCalculatesTotalLosses() throws IOException, SAXException, ParserConfigurationException {
+    public void testStatParserReturnsTotalLosses() throws IOException, SAXException, ParserConfigurationException {
         setUp("TestAsset.xml");
         TotalStatTrackerReport totalStatTrackerReport = totalStatParser.createTotalStatTrackerReport();
         int totalLosses = totalStatTrackerReport.getTotalLosses();
