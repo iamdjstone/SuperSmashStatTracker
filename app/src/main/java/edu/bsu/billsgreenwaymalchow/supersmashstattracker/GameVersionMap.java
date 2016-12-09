@@ -6,8 +6,7 @@ import java.util.HashMap;
 
 @SuppressWarnings("WeakerAccess")
 public class GameVersionMap {
-
-    @SuppressLint("UseSparseArrays")
+    @SuppressLint("UseSparseArrays")//we need both the key and the value in order to create the gameVersion buttons
     private HashMap<Integer, String> gameVersionHashMap = new HashMap<>();
 
     public GameVersionMap(){

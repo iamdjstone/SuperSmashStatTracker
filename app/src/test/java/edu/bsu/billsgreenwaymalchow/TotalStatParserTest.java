@@ -73,6 +73,7 @@ public class TotalStatParserTest {
         int totalWins = totalStatTrackerReport.getTotalWins();
         Assert.assertEquals(3500, totalWins);
     }
+
     @Test
     public void testStatParserReturnsTotalLosses() throws IOException, SAXException, ParserConfigurationException {
         setUp("TestAsset.xml");
@@ -80,6 +81,7 @@ public class TotalStatParserTest {
         int totalLosses = totalStatTrackerReport.getTotalLosses();
         Assert.assertEquals(4000, totalLosses);
     }
+
     @Test
     public void testParserReturnsCorrectNumberOfStatTrackers() throws IOException, SAXException, ParserConfigurationException {
         setUp("TestAsset.xml");

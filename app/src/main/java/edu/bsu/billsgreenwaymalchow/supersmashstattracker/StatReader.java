@@ -7,7 +7,6 @@ import java.io.File;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-
 @SuppressWarnings("WeakerAccess")
 public class StatReader {
 
@@ -22,8 +21,8 @@ public class StatReader {
             e.printStackTrace();
         }
     }
+
     public Document getDocument(){
         return document;
     }
-
 }
